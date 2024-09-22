@@ -1,5 +1,5 @@
 import mongoose, {Schema, Document, model} from "mongoose";
-import Message from ./Message;
+import {Message, MessageSchema} from "./Message";
 
 // Define the User interface extending the Document from Mongoose
 export interface User extends Document {
@@ -19,7 +19,6 @@ const UserSchema: Schema<User> = new Schema({
   userName: {
     type: String,
     required: true,
-    unique: true,
   },
 
   userEmail: {
@@ -59,7 +58,7 @@ const UserSchema: Schema<User> = new Schema({
     default: false,
   },
 
-  messages: [MessageSchema];
+  messages: [MessageSchema],
   createdAt: {
     type: Date,
     required: true,
