@@ -6,7 +6,7 @@ export interface User extends Document {
   userName: string;
   userEmail: string;
   password: string;
-  verifyCode: number;
+  verifyCode: string;
   verifyExpireDate: Date;
   isVerified: boolean;
   isAcceptingMessage: boolean;
@@ -28,7 +28,7 @@ const UserSchema: Schema<User> = new Schema({
     trim: true,
     lowercase: true,
     validate: {
-      validator: function (v: string) {
+    validator: function (v: string) {
         return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
       },
       message: (props: any) => `${props.value} is not a valid email address!`,
@@ -41,7 +41,7 @@ const UserSchema: Schema<User> = new Schema({
   },
 
   verifyCode: {
-    type: Number,
+    type: String,
     required: true,
   },
   verifyExpireDate: {
