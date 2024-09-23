@@ -3,7 +3,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
-import Credentials from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -44,6 +43,37 @@ export const authOptions: NextAuthOptions = {
       }
     })
   ],
+
+  callbacks: {
+    async jwt({ token, user }) {
+      // Cast token to your custom JWT interface
+      const customToken = token as any as { _id?: string; isVerified?: boolean; isAcceptingMessages?: boolean; username?: string };
+
+      if (user) {
+        customToken._id = user._id?.toString();
+        customToken.isVerified = user.isVerified;
+        customToken.isAcceptingMessages = user.isAcceptingMessages;
+        customToken.username = user.username;
+      }
+
+      return customToken;
+    },
+
+    async session({ session, token }) {
+      // Cast token to your custom JWT interface
+      const customToken = token as any as { _id?: string; isVerified?: boolean; isAcceptingMessages?: boolean; username?: string };
+
+      if (customToken) {
+        session.user._id = customToken._id?.toString();
+        session.user.isVerified = customToken.isVerified;
+        session.user.isAcceptingMessages = customToken.isAcceptingMessages;
+        session.user.username = customToken.username;
+      }
+
+      return session;
+    }
+  },
+
 
 
 
