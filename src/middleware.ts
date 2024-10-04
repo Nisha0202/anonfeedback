@@ -5,20 +5,28 @@ export {default} from 'next-auth/middleware'
 
 export async function middleware(request:NextRequest) {
 
-    const token = getToken({req: request});
+    const token = await getToken({req: request});
     const url = request.nextUrl;
 
 
-    return NextResponse.redirect(new URL('home', request.url))
+   
+if(token && (
+    url.pathname.startsWith('/signup') ||
+    url.pathname.startsWith('/signin') ||
+    url.pathname.startsWith('/dashboard') ||
+    url.pathname.startsWith('/verify')
+)){
+    return NextResponse.redirect(new URL('dashboard', request.url))
+}
 
-
-    
+     return NextResponse.redirect(new URL('home', request.url))
 }
 
 // Matching paths
 export const config ={
     matcher: ['/sigup',
         '/signin',
+        '/dashboard',
         '/verify/:path*'
         ]
 }
