@@ -1,4 +1,4 @@
-import mongoose, {Schema, Document, model} from "mongoose";
+import mongoose, {Schema, Document, model, models} from "mongoose";
 import {Message, MessageSchema} from "./Message";
 
 // Define the User interface extending the Document from Mongoose
@@ -67,7 +67,10 @@ const UserSchema: Schema<User> = new Schema({
 });
 
 // Export the User model
-const UserModel = model<User>('User', UserSchema);
+// const UserModel = model<User>('User', UserSchema);
+// Use the existing model if it is already compiled, otherwise define it
+const UserModel = models.User || model<User>('User', UserSchema);
+
 
 export default UserModel;
 

@@ -43,8 +43,6 @@ export async function POST(request: Request) {
 
             }
 
-
-
         } else {
 
             // dosn'texist so create
@@ -90,8 +88,6 @@ export async function POST(request: Request) {
                 message: "User Registered Successfully, Please Verify Your Email",
             }, { status: 201 })
         }
-
-
 
 
 

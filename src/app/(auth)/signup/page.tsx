@@ -9,14 +9,14 @@ export default function Component() {
     return (
       <>
         Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <button className="px-3 py-1 border-2 bg-black text-white rounded text-sm" onClick={() => signOut()}>Sign out</button>
       </>
     )
   }
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button className="px-3 py-1 border-2 bg-black text-white rounded text-sm" onClick={() => signIn()}>Sign in</button>
     </>
   )
 }
