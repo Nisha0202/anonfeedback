@@ -2,7 +2,11 @@ import dbConnect from "@/lib/dbConnect";
 import { sendVeficationEmail } from "@/lib/resend";
 import UserModel from "@/model/User";
 import bcrypt from 'bcryptjs';
+import NextAuth from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/options";
 
+const handler = NextAuth(authOptions);
+export {handler as GET};
 
 export async function POST(request: Request) {
     await dbConnect();
@@ -28,8 +32,6 @@ export async function POST(request: Request) {
                 )
 
             } else {
-
-
 
                 const hashedpassword = await bcrypt.hash(password, 10);
                 const expiry = new Date();
