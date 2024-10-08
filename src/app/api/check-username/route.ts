@@ -54,7 +54,7 @@ export async function GET(request: Request){
                 success: true,
                 message: "Username is availiable."
             },
-            { status: 500 }      
+            { status: 200 }      
         )
 
         

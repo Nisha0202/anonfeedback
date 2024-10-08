@@ -9,13 +9,11 @@ export async function POST(request: Request) {
 
         const { username, code } = await request.json();
 
-        decodeURIComponent(username);
-        const user = UserModel.findOne({ userName: decodeURIComponent });
+        const userName = decodeURIComponent(username);
+        const user = await UserModel.findOne({ userName: userName });
 
 
         if (!user) {
-
-
             console.error("User can't be found.");
             return Response.json(
                 {
@@ -26,6 +24,41 @@ export async function POST(request: Request) {
             )
 
         }
+
+        const isCodeValid = user.verifyCode === code;
+        const isCodeNotExpired = new Date(user.verifyExpireDate) > new Date();
+        if (isCodeNotExpired && isCodeValid) {
+            user.isVerified = true
+            await user.save()
+
+            return Response.json(
+                {
+                    success: true,
+                    message: "Account verified successfully."
+                },
+                { status: 200 }
+            )
+        } else if (!isCodeNotExpired) {
+            return Response.json(
+                {
+                    success: false,
+                    message: "Verification Code has been expired, please sign up again."
+                },
+                { status: 400 }
+            )
+
+        } else{
+            return Response.json(
+                {
+                    success: false,
+                    message: "Verification Code is wrong."
+                },
+                { status: 400 }
+            )
+        }
+ 
+
+
 
     } catch (error) {
         console.error("Error verifying user");
