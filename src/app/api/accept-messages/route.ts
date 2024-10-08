@@ -25,4 +25,53 @@ export async function POST(request: Request){
     const userId = user?._id;
 
     const {acceptmessages} = await request.json();
+
+
+    try {
+
+        const updateUser = await UserModel.findByIdAndUpdate(
+            userId,
+            { isAcceptingMessage : acceptmessages },
+            {new : true}
+
+        )
+            if(!updateUser){
+
+                return Response.json(
+                    {
+                        success: false,
+                        message: "Accept messages not authorized.",
+                        updateUser
+                    },
+                    { status: 401}      
+                ) 
+
+
+            }
+
+            return Response.json(
+                {
+                    success: true,
+                    message: "Message acceptence status updated."
+                },
+                { status: 200}      
+            ) 
+        
+        
+    } catch (error) {
+        console.log("failed to update user status to accept messages");
+
+        return Response.json(
+            {
+                success: false,
+                message: "Accept messages not authorized."
+            },
+            { status: 500}      
+        ) 
+
+    }
+
+
+
+
 }
