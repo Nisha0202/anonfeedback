@@ -15,6 +15,9 @@ await resend.emails.send({
     react: VerificationEmail({ username, verifycode}),
   });
 
+
+
+  
     return {success:true, message: "Verification email sent successfully."}
 } catch (error) {
     console.error("Error Sending Verification Email", error);
