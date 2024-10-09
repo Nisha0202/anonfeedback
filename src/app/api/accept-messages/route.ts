@@ -1,7 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import { getServerSession, User } from "next-auth";
-
 import { authOptions } from "../auth/[...nextauth]/options";
 
 export async function POST(request: Request) {
