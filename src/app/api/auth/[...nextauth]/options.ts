@@ -47,12 +47,12 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       // Cast token to your custom JWT interface
-      const customToken = token as any as { _id?: string; isVerified?: boolean; isAcceptingMessages?: boolean; username?: string };
+      const customToken = token as any as { _id?: string; isVerified?: boolean; isAcceptingMessage?: boolean; username?: string };
 
       if (user) {
         customToken._id = user._id?.toString();
         customToken.isVerified = user.isVerified;
-        customToken.isAcceptingMessages = user.isAcceptingMessages;
+        customToken.isAcceptingMessage = user.isAcceptingMessage;
         customToken.username = user.username;
       }
 
@@ -61,12 +61,12 @@ export const authOptions: NextAuthOptions = {
 
     async session({ session, token }) {
       // Cast token to your custom JWT interface
-      const customToken = token as any as { _id?: string; isVerified?: boolean; isAcceptingMessages?: boolean; username?: string };
+      const customToken = token as any as { _id?: string; isVerified?: boolean; isAcceptingMessage?: boolean; username?: string };
 
       if (customToken) {
         session.user._id = customToken._id?.toString();
         session.user.isVerified = customToken.isVerified;
-        session.user.isAcceptingMessages = customToken.isAcceptingMessages;
+        session.user.isAcceptingMessage = customToken.isAcceptingMessage;
         session.user.username = customToken.username;
       }
 
