@@ -34,12 +34,9 @@ function SignInForm() {
   const { toast } = useToast();
   const router = useRouter();
 
-
-
   //zod implementation
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
-
     defaultValues: {
       username: '',
       email: '',
@@ -47,30 +44,37 @@ function SignInForm() {
     }
   });
 
+
   useEffect(() => {
     const checkUsernameUnique = async () => {
-      console.log("hii", username);
+      // console.log("hii", username);
+    
       // Prevent API call if username is empty
 
       if (username.trim().length == 0) {
         return;
       }
-      if (username.trim().length < 3) {
+
+      if (username.trim().length < 3) {  
+        setIsUsernameChecking(true);
         setUsernameMessage('Username must be at least 3 characters long and unique.');
+        setIsUsernameChecking(false);
         return;
       }
 
 
-      setIsUsernameChecking(true);
-      setUsernameMessage('');
+
+
 
       try {
+        setIsUsernameChecking(true);
         const response = await axios.get(`/api/check-username?username=${username}`);
+
         console.log(response.data);
-        if(setUsernameMessage.length == 0){
+          setUsernameMessage('');
           setUsernameMessage(response.data.message);
-        }
         
+
         setIsUsernameChecking(false);
       } catch (error) {
         const axioserror = error as AxiosError<ApiResponse>;
@@ -104,32 +108,32 @@ function SignInForm() {
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true);
-    
+
     try {
       const response = await axios.post<ApiResponse>('/api/signup', data);
-  
+
       // Check if the response status is 2xx
       if (response.status == 201) {
         toast({
           title: "Success",
           description: response.data.message,
         });
-  
+
         // Navigate only after successful sign-up
         // setTimeout(() => {router.replace(`/verify/${data.username}`);},3000);
-      
-      
+
+
       } else {
         toast({
           title: "Sign up failed",
           description: response.data.message || "Unexpected error occurred during sign-up.",
         });
       }
-  
+
     } catch (error) {
       const axioserror = error as AxiosError<ApiResponse>;
       console.log(axioserror);
-  
+
       if (axioserror.response) {
         // Server responded with a status code other than 2xx
         toast({
@@ -153,7 +157,7 @@ function SignInForm() {
       setIsSubmitting(false);
     }
   };
-  
+
 
   return (
     <div className="border-2 min-h-[99vh] grid place-items-center ">
@@ -245,7 +249,7 @@ function SignInForm() {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="mr-1 h-4 w-4 animate-spin" />
                     Please wait...
                   </>
                 ) : (

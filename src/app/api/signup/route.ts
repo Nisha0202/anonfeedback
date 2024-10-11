@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
         // Check if the user already exists
         let user = await UserModel.findOne({ userEmail: email });
-
+        const smallLetterUsername = username.toLowerCase();
         const verifyCode = Math.floor(Math.random() * 10000) + 'anon';
         const hashedPassword = await bcrypt.hash(password, 10);
         const expiry = new Date();
@@ -34,9 +34,9 @@ export async function POST(request: Request) {
                     { status: 400 }
                 );
             }
-
+          
             // Update existing unverified user (both username and password)
-            user.userName = username;  // Update the username
+            user.userName = smallLetterUsername;  // Update the username
             user.password = hashedPassword;
             user.verifyCode = verifyCode;
             user.verifyExpireDate = expiry;
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
         } else {
             // Create a new user
             user = new UserModel({
-                userName: username,
+                userName: smallLetterUsername,
                 userEmail: email,
                 password: hashedPassword,
                 verifyCode,
