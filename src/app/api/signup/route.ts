@@ -5,103 +5,86 @@ import bcrypt from 'bcryptjs';
 import NextAuth from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 
+// NextAuth handler for GET requests
 const handler = NextAuth(authOptions);
-export {handler as GET};
+export { handler as GET };
 
+// POST handler for user registration
 export async function POST(request: Request) {
     await dbConnect();
+
     try {
+        const { username, email, password } = await request.json();
 
-        const { username, email, password } = await request.json()
+        // Check if the user already exists
+        let user = await UserModel.findOne({ userEmail: email });
 
-        const existingUser = await UserModel.findOne({
-            userEmail: email,
-            // isVerified: true,
-        })
         const verifyCode = Math.floor(Math.random() * 10000) + 'anon';
-        if (existingUser) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const expiry = new Date();
+        expiry.setHours(expiry.getHours() + 1);
 
-            if (existingUser.isVerified) {
-                console.log("User is already registered and verified.");
+        if (user) {
+            if (user.isVerified) {
                 return Response.json(
                     {
-                        success: true,
+                        success: false,
                         message: "User is already registered and verified."
                     },
                     { status: 400 }
-                )
-
-            } else {
-
-                const hashedpassword = await bcrypt.hash(password, 10);
-                const expiry = new Date();
-                expiry.setHours(expiry.getHours() + 1);
-                existingUser.password = hashedpassword;
-                existingUser.verifyCode = verifyCode;
-                existingUser.verifyExpireDate = expiry;
-                existingUser.verifyCode = verifyCode;
-
-                await existingUser.save()
-
+                );
             }
 
+            // Update existing unverified user (both username and password)
+            user.userName = username;  // Update the username
+            user.password = hashedPassword;
+            user.verifyCode = verifyCode;
+            user.verifyExpireDate = expiry;
+            await user.save();
         } else {
-
-            // dosn'texist so create
-
-            const verifyCode = Math.floor(Math.random() * 10000) + 'anon';
-
-            const hashedpassword = await bcrypt.hash(password, 10);
-            const expiry = new Date();
-            expiry.setHours(expiry.getHours() + 1);
-            const newUser = new UserModel({
+            // Create a new user
+            user = new UserModel({
                 userName: username,
                 userEmail: email,
-                password: hashedpassword,
-                verifyCode: verifyCode,
+                password: hashedPassword,
+                verifyCode,
                 verifyExpireDate: expiry,
                 isVerified: false,
                 isAcceptingMessage: false,
                 messages: [],
+            });
 
-            })
-
-            await newUser.save()
+            await user.save();
         }
 
-        // send verification mail
-        const emailResponse = await sendVeficationEmail(
-            email,
-            username,
-            verifyCode
-
-        )
+        // Send verification email
+        const emailResponse = await sendVeficationEmail(email, username, verifyCode);
         if (!emailResponse.success) {
-            return Response.json({
-
-                success: false,
-                message: emailResponse.message,
-            }, { status: 500 })
-        } else {
-
-            return Response.json({
-
-                success: true,
-                message: "User Registered Successfully, Please Verify Your Email",
-            }, { status: 201 })
+            return Response.json(
+                {
+                    success: false,
+                    message: emailResponse.message,
+                },
+                { status: 500 }
+            );
         }
 
-
+        return Response.json(
+            {
+                success: true,
+                message: "User registered successfully. Please verify your email.",
+            },
+            { status: 201 }
+        );
 
     } catch (error) {
         console.error("Error registering user", error);
         return Response.json(
             {
                 success: false,
-                message: "Error registering user"
+                message: "Error registering user. Please try again later.",
             },
             { status: 500 }
-        )
-
+        );
     }
 }

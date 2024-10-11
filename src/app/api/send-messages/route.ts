@@ -41,7 +41,7 @@ export async function POST(request: Request){
         return Response.json(
             {
                 success: true,
-                message: "Sent successful.",
+                message: "Sent successfully.",
             },
             { status: 200 }
         )
@@ -54,7 +54,7 @@ export async function POST(request: Request){
         return Response.json(
             {
                 success: false,
-                message: "Unexpected error."
+                message: "Unexpected error! lease try again."
             },
             { status: 500 }
         )

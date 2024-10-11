@@ -52,23 +52,50 @@ function SignInForm() {
       console.log("hii", username);
       // Prevent API call if username is empty
 
-      if (username.trim().length < 3) {
-        setUsernameMessage('Username must be at least 3 characters long.');
+      if (username.trim().length == 0) {
         return;
       }
+      if (username.trim().length < 3) {
+        setUsernameMessage('Username must be at least 3 characters long and unique.');
+        return;
+      }
+
+
       setIsUsernameChecking(true);
       setUsernameMessage('');
 
       try {
         const response = await axios.get(`/api/check-username?username=${username}`);
         console.log(response.data);
-        setUsernameMessage(response.data.message);
+        if(setUsernameMessage.length == 0){
+          setUsernameMessage(response.data.message);
+        }
+        
         setIsUsernameChecking(false);
       } catch (error) {
         const axioserror = error as AxiosError<ApiResponse>;
-        setUsernameMessage(axioserror.response?.data.message || 'Unexpected Error');
-        setIsUsernameChecking(false);
+
+        if (axioserror.response) {
+          // Server responded with a status code other than 2xx
+          toast({
+            title: "Failed",
+            description: axioserror.response.data.message,
+          });
+        } else if (axioserror.request) {
+          // Request was made but no response received
+          toast({
+            title: "Network Error",
+            description: "No response received. Please check your network connection.",
+          });
+        } else {
+          // Something else happened in setting up the request
+          toast({
+            title: "Error",
+            description: axioserror.message || 'An unknown error occurred',
+          });
+        }
       }
+
     };
 
     checkUsernameUnique();
@@ -77,37 +104,56 @@ function SignInForm() {
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true);
+    
     try {
-      const response = await axios.post<ApiResponse>('api/signg-up', data);
-
-
-      toast({
-        title: "Success",
-        description: response?.data.message,
-      })
-
-      router.replace(`/verify/${username}`);
-
-
+      const response = await axios.post<ApiResponse>('/api/signup', data);
+  
+      // Check if the response status is 2xx
+      if (response.status == 201) {
+        toast({
+          title: "Success",
+          description: response.data.message,
+        });
+  
+        // Navigate only after successful sign-up
+        // setTimeout(() => {router.replace(`/verify/${data.username}`);},3000);
+      
+      
+      } else {
+        toast({
+          title: "Sign up failed",
+          description: response.data.message || "Unexpected error occurred during sign-up.",
+        });
+      }
+  
     } catch (error) {
-
       const axioserror = error as AxiosError<ApiResponse>;
-      toast({
-        title: "Failed",
-        description: axioserror.response?.data.message || 'Unexpected Error while Submitting',
-      })
-
-
-
+      console.log(axioserror);
+  
+      if (axioserror.response) {
+        // Server responded with a status code other than 2xx
+        toast({
+          title: "Failed",
+          description: axioserror.response.data.message,
+        });
+      } else if (axioserror.request) {
+        // Request was made but no response received
+        toast({
+          title: "Network Error",
+          description: "No response received. Please check your network connection.",
+        });
+      } else {
+        // Something else happened in setting up the request
+        toast({
+          title: "Error",
+          description: axioserror.message || 'An unknown error occurred',
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
-
-
-
-
-
-  }
+  };
+  
 
   return (
     <div className="border-2 min-h-[99vh] grid place-items-center ">
@@ -192,9 +238,21 @@ function SignInForm() {
                 )}
               />
               <div></div>
-              <Button type="submit" disabled={isSubmitting} className=" w-full font-medium rounded-sm bg-rose-600 hover:bg-rose-500">
-                {isSubmitting ? (<><Loader2 className="mr-2 h-6 w-6 animate-spin" /> Please wait...</>) : ('Sign Up')}
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex items-center justify-center w-full font-medium rounded-sm bg-rose-600 hover:bg-rose-500"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Please wait...
+                  </>
+                ) : (
+                  'Sign Up'
+                )}
               </Button>
+
 
             </form>
 
