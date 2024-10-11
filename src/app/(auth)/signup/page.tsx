@@ -64,8 +64,6 @@ function SignInForm() {
 
 
 
-
-
       try {
         setIsUsernameChecking(true);
         const response = await axios.get(`/api/check-username?username=${username}`);
@@ -120,7 +118,7 @@ function SignInForm() {
         });
 
         // Navigate only after successful sign-up
-        // setTimeout(() => {router.replace(`/verify/${data.username}`);},3000);
+        setTimeout(() => {router.replace(`/verify/${data.username}`);},2000);
 
 
       } else {
@@ -160,7 +158,7 @@ function SignInForm() {
 
 
   return (
-    <div className="border-2 min-h-[99vh] grid place-items-center ">
+    <div className=" min-h-[99vh] grid place-items-center ">
 
       <div className="w-full max-w-md px-4 py-8 md:px-8 md:border-2  rounded-md">
         <div className="text-center mb-8 space-y-1">

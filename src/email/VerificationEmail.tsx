@@ -33,7 +33,7 @@ export default function VerificationEmail({ username, verifycode }: Verification
                             Your OTP for verification is: <strong>{verifycode}</strong>
                         </Text>
 
-                        <Button href="#" style={{ backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', borderRadius: '5px' }}>
+                        <Button href={`/verify/${username}`} style={{ backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', borderRadius: '5px' }}>
                             Verify Now
                         </Button>
                     </Section>
