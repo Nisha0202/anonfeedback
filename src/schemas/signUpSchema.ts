@@ -6,7 +6,7 @@ export const usernameValidation = z
 .min(2, "Username must be at least 2 characters long.")
 .max(30, "Username must be at most 30 characters long.")
 // Require the first letter to be uppercase and allow letters, numbers, and underscores
-.regex(/^[A-Z][a-zA-Z0-9_]+$/, "Username must start with an uppercase letter and only contain letters, numbers, and underscores.");
+// .regex(/^[A-Z][a-zA-Z0-9_]+$/, "Username must start with an uppercase letter and only contain letters, numbers, and underscores.");
 
 // Define the sign-up schema
 const signUpSchema = z.object({
