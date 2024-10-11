@@ -53,7 +53,7 @@ function SignInForm() {
       // Prevent API call if username is empty
 
       if (username.trim().length < 3) {
-        // setUsernameMessage('Username must be at least 3 characters long');
+        setUsernameMessage('Username must be at least 3 characters long.');
         return;
       }
       setIsUsernameChecking(true);
@@ -63,11 +63,11 @@ function SignInForm() {
         const response = await axios.get(`/api/check-username?username=${username}`);
         console.log(response.data);
         setUsernameMessage(response.data.message);
-        setIsUsernameChecking(true);
+        setIsUsernameChecking(false);
       } catch (error) {
         const axioserror = error as AxiosError<ApiResponse>;
         setUsernameMessage(axioserror.response?.data.message || 'Unexpected Error');
-        setIsUsernameChecking(true);
+        setIsUsernameChecking(false);
       }
     };
 
