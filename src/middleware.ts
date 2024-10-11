@@ -10,7 +10,7 @@ export async function middleware(request:NextRequest) {
 
 
    
-if(token && (
+if(!token && (
     url.pathname.startsWith('/signup') ||
     url.pathname.startsWith('/signin') ||
     url.pathname.startsWith('/dashboard') ||
@@ -19,7 +19,7 @@ if(token && (
     return NextResponse.redirect(new URL('dashboard', request.url))
 }
 
-     return NextResponse.redirect(new URL('home', request.url))
+     return NextResponse.redirect(new URL('/', request.url))
 }
 
 // Matching paths
