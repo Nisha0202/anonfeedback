@@ -77,3 +77,16 @@ body {
   }
 }
 
+@keyframes slide {
+  0% {
+    transform: translateX(80%); /* Start off-screen to the right */
+  }
+  100% {
+    transform: translateX(-80%); /* End off-screen to the left */
+  }
+}
+
+.slide-in {
+  animation: slide 10s linear infinite; /* Adjust duration as needed */
+}
+

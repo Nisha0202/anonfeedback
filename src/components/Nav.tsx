@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { Button } from './ui/button';
 import Link from 'next/link';
-import { Menu, X} from "lucide-react";
+import { Menu, X } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -34,7 +34,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
@@ -51,7 +51,8 @@ export default function Navbar() {
               {session ? (
                 <div className="flex items-center justify-between">
                   <span className=''>Hi <span className='text-rose-600'>@{session?.user.userName}</span> 🥰</span>
-                  <Button onClick={() => signOut()} className="rounded-sm text-sm text-black font-medium bg-gray-200 hover:bg-gray-300 ml-6">
+
+                  <Button  onClick={() => signOut()}  variant="outline" className="text-sm font-medium rounded-sm ml-6">
                     Sign Out
                   </Button>
                 </div>
@@ -104,7 +105,7 @@ export default function Navbar() {
                   {session ? (
                     <div className="flex flex-col items-start text-sm pt-4">
 
-                      <Button onClick={() => signOut()} className="rounded-sm text-sm text-black  font-medium bg-gray-200 hover:bg-gray-300">
+                      <Button onClick={() => signOut()}  variant="outline" className="text-sm font-medium rounded-sm">
                         Sign Out
                       </Button>
                     </div>
