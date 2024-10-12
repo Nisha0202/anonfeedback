@@ -43,7 +43,7 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
       try {
         const result = await signIn('credentials', {
           redirect: false,
-          identifier: data.identifier,
+          email: data.identifier,
           password: data.password
         });
     
@@ -105,7 +105,7 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
                   <FormItem>
                     <FormLabel>Email or Username</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="email or username" className="rounded-sm"
+                      <Input  placeholder="email or username" className="rounded-sm"
                         {...field}
                       />
                     </FormControl>
@@ -185,26 +185,3 @@ export default SignInForm
 
 
 
-
-// 'use client'
-// import React from "react"
-// import { useSession, signIn, signOut } from "next-auth/react"
-
-
-// export default function Component() {
-//   const { data: session } = useSession()
-//   if (session) {
-//     return (
-//       <>
-//         Signed in as {session.user.email} <br />
-//         <button className="px-3 py-1w-24 h-8 border-2 bg-black text-white rounded text-sm" onClick={() => signOut()}>Sign out</button>
-//       </>
-//     )
-//   }
-//   return (
-//     <>
-//       Not signed in <br />
-//       <button className="px-3 py-1 w-24 h-8 border-2 bg-black text-white rounded text-sm" onClick={() => signIn()}>Sign in</button>
-//     </>
-//   )
-// }
