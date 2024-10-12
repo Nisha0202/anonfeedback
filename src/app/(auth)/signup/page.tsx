@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Divide, Loader2 } from "lucide-react"
 import Link from 'next/link';
 
-function SignInForm() {
+function SignUpForm() {
   const [username, setUsername] = useState(''); // Stores the input value of the username
   const [usernameMessage, setUsernameMessage] = useState(''); // Stores validation or status messages for the username
   const [isUsernameChecking, setIsUsernameChecking] = useState(false); // To track if the username is being checked (for uniqueness)
@@ -90,7 +90,7 @@ function SignInForm() {
             description: "No response received. Please check your network connection.",
           });
         } else {
-          // Something else happened in setting up the request
+          // Something else happened Up setting up the request
           toast({
             title: "Error",
             description: axioserror.message || 'An unknown error occurred',
@@ -123,7 +123,7 @@ function SignInForm() {
 
       } else {
         toast({
-          title: "Sign up failed",
+          title: "Sign Up Failed",
           description: response.data.message || "Unexpected error occurred during sign-up.",
         });
       }
@@ -239,7 +239,7 @@ function SignInForm() {
                   </FormItem>
                 )}
               />
-              <div></div>
+              <br />
               <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -278,4 +278,4 @@ function SignInForm() {
   )
 }
 
-export default SignInForm
+export default SignUpForm

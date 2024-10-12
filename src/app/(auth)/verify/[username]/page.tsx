@@ -21,17 +21,11 @@ import { Input } from "@/components/ui/input";
 import { Divide, Loader2 } from "lucide-react"
 import Link from 'next/link';
 
-
-
 function VerifyAccount() {
     const [isVerifying, setIsVerifying] = useState(false);
     const router = useRouter();
     const param = useParams<{username:string}>();
     const { toast } = useToast();
-    // toast({
-    //     title: "Failed",
-    //     description: axioserror.response.data.message,
-    //   });
 
   //zod implementation
   const form = useForm<z.infer<typeof verifySchema>>({
@@ -133,7 +127,7 @@ function VerifyAccount() {
               )}
             />
 
-            <div className=''></div>
+            
             <Button
               type="submit"
               disabled={isVerifying}
@@ -148,20 +142,11 @@ function VerifyAccount() {
                 'Verify'
               )}
             </Button>
-
-
           </form>
-
-
-
         </Form>
-
       </div>
 
     </div>
-
-
-
   </div>
   )
 }
