@@ -26,7 +26,7 @@ export default function Component() {
           </div>
         </section>
 
-        <section className="bg-white py-12">
+        <section className="bg-white py-14">
           <div className="container mx-auto px-4">
             <h2 className="text-xl font-bold text-center mb-6">
               Key Features
@@ -59,7 +59,7 @@ export default function Component() {
 
       <footer className="bg-gray-100 py-6">
         <div className="container mx-auto px-4 text-center text-gray-600 text-xs">
-          <p>&copy; 2024 AnonyFeedback. All rights reserved.</p>
+          <p>&copy; 2024 AnonFeedback. All rights reserved.</p>
 
         </div>
       </footer>
