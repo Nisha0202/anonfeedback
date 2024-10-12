@@ -160,10 +160,10 @@ function SignUpForm() {
   return (
     <div className=" min-h-[99vh] grid place-items-center ">
 
-      <div className="w-full max-w-md px-4 py-8 md:px-8 md:border-2  rounded-md">
+      <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10 md:border-2  rounded-md">
         <div className="text-center mb-8 space-y-1">
 
-          <h1 className="text-xl lg:text-2xl font-bold">AnnonFeedback</h1>
+          <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnnonFeedback</Link>
           <p className="text-sm text-gray-600">Signup to start your anonymous adventure</p>
         </div>
 

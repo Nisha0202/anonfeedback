@@ -1,14 +1,15 @@
-import Nav from "@/components/Nav";
+// import Nav from "@/components/Nav";
 import { Button } from "@/components/ui/button"
 import { ShieldCheck, MessageSquare, UserPlus, Lock } from "lucide-react"
-import Link from "next/link"
+import dynamic from 'next/dynamic';
+const Nav = dynamic(() => import('@/components/Nav'));
 
 export default function Component() {
 
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-<Nav/>
+      <Nav />
       <main className="flex-grow">
         <section className="container mx-auto px-4 py-16 text-center space-y-3">
           <h1 className="text-xl lg:text-2xl font-bold">
@@ -59,7 +60,7 @@ export default function Component() {
       <footer className="bg-gray-100 py-8">
         <div className="container mx-auto px-4 text-center text-gray-600 text-xs">
           <p>&copy; 2024 AnonyFeedback. All rights reserved.</p>
-       
+
         </div>
       </footer>
     </div>
