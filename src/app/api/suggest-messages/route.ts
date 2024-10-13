@@ -1,36 +1,50 @@
 // //D:\next\AnonFeedback\my-app\src\app\api\suggest-messages\route.ts
 
-// import Groq from "groq-sdk";
-// import { NextApiRequest, NextApiResponse } from "next";
+import Groq from "groq-sdk";
 
-// // Server-side API handler
-// const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+// Server-side API handler
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-// export async function GET(req: NextApiRequest, res: NextApiResponse) {
-//   try {
-//     const chatCompletion = await groq.chat.completions.create({
-//       "messages": [
-//         {
-//           "role": "user",
-//           "content": "Suggest one friendly question to ask."
-//         }
-//       ],
-//       "model": "llama3-8b-8192",
-//       "temperature": 1,
-//       "max_tokens": 1024,
-//       "top_p": 1,
-//       "stream": true,
-//       "stop": null
-//     });
+export async function GET() {
+  try {
+    const chatCompletion = await groq.chat.completions.create({
+      "messages": [
+        {
+          "role": "user",
+          "content": "Suggest one friendly question to ask. Please only reply in one sentence."
+        }
+      ],
+      "model": "llama3-8b-8192",
+      "temperature": 1,
+      "max_tokens": 1024,
+      "top_p": 1,
+      "stream": false,
+      "stop": null
+    });
 
+    console.log(chatCompletion.choices[0]?.message?.content);
+    return Response.json(
+        {
+            success: true,
+            message: chatCompletion.choices[0]?.message?.content || "",
+        },
+        { status: 200 }
+    )
 
-//     res.status(200).json(chatCompletion);
-//   } catch (error: any) {
-//     console.error("Error fetching Groq completion:", error); // Log the error
-//     res.status(500).json({ message: "Error fetching Groq completion", error: error.message || "Unknown error" });
-//   }
+    
+  } catch (error: any) {
+    console.error("Error fetching Groq completion:", error); // Log the error
+    return Response.json(
+        {
+            success: false,
+            message: "Error fetching Groq completion.",
+        },
+        { status: 500 }
+    )
+  
+  }
 
-// }
+}
 
 
 
