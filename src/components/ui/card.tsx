@@ -1,6 +1,4 @@
 /* eslint-disable rule-name */
-// Some code that violates the rule
-/* eslint-enable rule-name */
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
