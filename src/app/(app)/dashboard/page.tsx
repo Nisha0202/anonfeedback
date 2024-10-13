@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast"
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Trash2, Search, Loader2, CopyIcon } from "lucide-react";
+import { RefreshCw, Loader2, CopyIcon } from "lucide-react";
 import MessageCard from "@/components/MessageCard"
 import axios, { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
@@ -82,7 +82,7 @@ export default function Dashboard() {
     setProfileUrl(url);
     fetchMessages();
     fetchAcceptMessage();
-  }, [session]);
+  }, [session, fetchMessages, fetchAcceptMessage]);
 
   const handleSwitchChange = async () => {
     try {

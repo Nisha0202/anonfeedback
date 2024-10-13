@@ -1,7 +1,7 @@
 
 'use client'
-import React, { useEffect, useState } from "react"
-import { useSession, signIn, signOut } from "next-auth/react"
+import React, {  useState } from "react"
+import {  signIn } from "next-auth/react"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from "zod"
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ToastAction } from "@/components/ui/toast"
 import {
   Form,
   FormControl,
@@ -65,6 +66,9 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
           toast({
             title: "Success",
             description: "Sign in successful.",
+            action: (
+              <ToastAction altText="Welcome user">Welcome!</ToastAction>
+            ),
           });
     
           setTimeout(() => { router.replace('/') }, 1400);
@@ -90,7 +94,7 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
       <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10  md:border-2  rounded-md">
         <div className="text-center mb-8 space-y-1">
 
-          <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnnonFeedback</Link>
+          <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
           <p className="text-sm text-gray-600">Signup to start your anonymous adventure</p>
         </div>
 

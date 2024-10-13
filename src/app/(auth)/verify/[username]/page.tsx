@@ -1,7 +1,6 @@
 'use client'
 import { useParams, useRouter } from 'next/navigation';
 import { useToast } from "@/hooks/use-toast"
-import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { verifySchema } from "@/schemas/verifySchema"
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,8 +17,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
-import { Divide, Loader2 } from "lucide-react"
-import Link from 'next/link';
+import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
 function VerifyAccount() {
     const [isVerifying, setIsVerifying] = useState(false);
@@ -97,7 +96,7 @@ function VerifyAccount() {
     <div className="w-full max-w-md px-4 py-8 md:px-8 md:border-2  rounded-md">
       <div className="text-center mb-8 space-y-1">
 
-        <h1 className="text-xl lg:text-2xl font-bold">AnnonFeedback</h1>
+        <h1 className="text-xl lg:text-2xl font-bold">AnonFeedback</h1>
         <p className="text-sm text-gray-600">Please check your registered email for the verification code</p>
       </div>
 
