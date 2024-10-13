@@ -40,7 +40,7 @@ export async function GET() {
           success: false,
           message: "User not found or no messages.",
         }),
-        { status: 404 }
+        { status: 200 }
       );
     }
 
