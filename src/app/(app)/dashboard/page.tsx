@@ -13,6 +13,7 @@ import { Switch } from "@/components/ui/switch";
 import { acceptMessageSchema } from "@/schemas/acceptMessageSchema"
 import { Message } from "@/model/Message"
 import { useWindowSize } from "usehooks-ts";
+import Link from "next/link";
 
 export default function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -131,7 +132,7 @@ export default function Dashboard() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl lg:text-2xl font-bold">AnonFeedback Dashboard</h1>
+        <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback Dashboard</Link>
         <Button onClick={() => fetchMessages(true)} variant="outline" size={'sm'} className=" flex items-center space-x-2">
           <RefreshCw className="h-4 w-4" />
         </Button>

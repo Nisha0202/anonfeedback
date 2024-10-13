@@ -1,6 +1,6 @@
 // import Nav from "@/components/Nav";
 import { Button } from "@/components/ui/button"
-import { ShieldCheck, MessageSquare, UserPlus, Lock } from "lucide-react"
+import { User,Star,ExternalLink } from "lucide-react"
 import dynamic from 'next/dynamic';
 const Nav = dynamic(() => import('@/components/Nav'));
 
@@ -16,7 +16,7 @@ export default function Component() {
             Share Feedback Anonymously
           </h1>
           <p className="text-sm lg:text-base text-gray-600 pb-8 max-w-2xl mx-auto">
-            Empower your team with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
+            Empower yourself with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
           </p>
           <div className="flex justify-center space-x-4">
             <Button className="text-sm font-medium rounded-sm hover:bg-rose-500">Get Started</Button>
@@ -29,30 +29,27 @@ export default function Component() {
         <section className="bg-white py-14">
           <div className="container mx-auto px-4">
             <h2 className="text-xl font-bold text-center mb-6">
-              Key Features
+              How It Works
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <FeatureCard
-                icon={<ShieldCheck className=" h-6 w-8 text-blue-500" />}
-                title="100% Anonymous"
-                description="Your identity is always protected. Share feedback without fear."
-              />
-              <FeatureCard
-                icon={<MessageSquare className=" h-6  w-6 text-green-500" />}
-                title="Real-time Feedback"
-                description="Instant delivery of feedback to recipients for quick action."
-              />
-              <FeatureCard
-                icon={<UserPlus className=" h-6  w-6 text-purple-500" />}
-                title="Easy Onboarding"
-                description="Set up your team in minutes with our intuitive interface."
-              />
-              <FeatureCard
-                icon={<Lock className="h-6 w-6 text-red-500" />}
-                title="Secure Platform"
-                description="Enterprise-grade security to keep your data safe and private."
-              />
-            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <FeatureCard
+    icon={<User className="h-6 w-8 text-blue-500" />} // Changed to User icon for profile
+    title="Create Your Profile"
+    description="Sign up and set up your anonymous profile! Choose a unique username that will appear in the link you share with others."
+  />
+  <FeatureCard
+    icon={<ExternalLink className="h-6 w-6 text-green-500" />} // Changed to Share icon for connecting and sharing
+    title="Connect & Share"
+    description="Send your URL to people you want to ask questions or get feedback from. Our platform guarantees complete anonymity for all feedback providers!"
+  />
+  <FeatureCard
+    icon={<Star className="h-6 w-6 text-purple-500" />} // Changed to Star icon for growth and improvement
+    title="Grow & Improve"
+    description="Receive genuine feedback, take a moment to reflect, and use those insights for your personal and professional growth."
+  />
+</div>
+
+
           </div>
         </section>
       </main>
