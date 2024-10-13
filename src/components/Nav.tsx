@@ -74,7 +74,7 @@ export default function Navbar() {
               ) : (
                 <>
 
-                  <Button onClick={() => signIn()} className="bg-rose-600  hover:bg-rose-500 rounded-sm  border border-transparent 
+                  <Button onClick={() => signIn()} className="bg-rose-700  hover:bg-rose-600 rounded-sm  border border-transparent 
                   text-sm font-medium text-white ">
                     Sign In
                   </Button>
@@ -125,7 +125,7 @@ export default function Navbar() {
                       </Button>
                     </div>
                   ) : (
-                    <Button onClick={() => signIn()} className="mt-4 bg-rose-600  hover:bg-rose-500 rounded-sm  border border-transparent 
+                    <Button onClick={() => signIn()} className="mt-4 bg-rose-700  hover:bg-rose-600 rounded-sm  border border-transparent 
                   text-sm font-medium text-white">
 
                       Sign In

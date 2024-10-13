@@ -243,7 +243,7 @@ function SignUpForm() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex items-center justify-center w-full font-medium rounded-sm bg-rose-600 hover:bg-rose-500"
+                className="flex items-center justify-center w-full font-medium rounded-sm bg-rose-700  hover:bg-rose-600"
               >
                 {isSubmitting ? (
                   <>
