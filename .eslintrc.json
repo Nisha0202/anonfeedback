@@ -5,8 +5,10 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "off", // Disable the rule for 'any'
-    "@typescript-eslint/no-unused-vars": "warn" // Change this to 'off' if you want to ignore unused vars entirely
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-empty-object-type": "warn" // This could help with your empty object type warning
   }
 }
+
 
