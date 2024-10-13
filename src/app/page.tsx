@@ -11,7 +11,7 @@ export default function Component() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Nav />
       <main className="flex-grow">
-        <section className="container mx-auto px-4 py-16 lg:py-18 text-center space-y-3">
+        <section className="container mx-auto px-6 py-16 lg:py-18 text-center space-y-3">
           <h1 className="text-xl lg:text-2xl font-bold">
             Share Feedback Anonymously
           </h1>
@@ -27,7 +27,7 @@ export default function Component() {
         </section>
 
         <section className="bg-white py-14">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-6">
             <h2 className="text-xl font-bold text-center mb-6">
               How It Works
             </h2>
@@ -56,7 +56,7 @@ export default function Component() {
       </main>
 
       <footer className="bg-gray-100 py-6">
-        <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
+        <div className="container mx-auto px-6 text-center text-gray-600 text-sm">
           <p>&copy; 2024 AnonFeedback. All rights reserved.</p>
 
         </div>

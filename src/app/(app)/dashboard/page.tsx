@@ -122,14 +122,14 @@ export default function Dashboard() {
 
   if (!session || !session.user) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-8">
         <h1 className="text-xl lg:text-2xl font-bold">Please Sign In</h1>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container py-8 px-6">
       <div className="flex justify-between items-center">
         <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback Dashboard</Link>
         <Button onClick={() => fetchMessages(true)} variant="outline" size={'sm'} className=" flex items-center space-x-2">
@@ -148,16 +148,18 @@ export default function Dashboard() {
             disabled={isSwitchLoading}
           />
         </div>
-<div>
-   {acceptMessages && <div className="text-sm flex gap-2 items-center">
-          {profileUrl}
-          <Button onClick={copyUrl} variant="outline" size="sm" className="flex items-center space-x-2">
-            <CopyIcon className="h-4 w-4" />
-            <span className="text-sm">Copy URL</span>
-          </Button>
-        </div>} 
-</div>
-      
+
+
+        <div>
+          {acceptMessages && <div className="text-sm flex gap-2 items-center">
+            {profileUrl}
+            <Button onClick={copyUrl} variant="outline" size="sm" className="flex items-center space-x-2">
+              <CopyIcon className="h-4 w-4" />
+              <span className="text-sm">Copy URL</span>
+            </Button>
+          </div>}
+        </div>
+
       </div>
 
       {isLoading ? (
