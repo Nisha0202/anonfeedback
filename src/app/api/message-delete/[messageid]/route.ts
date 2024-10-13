@@ -1,14 +1,9 @@
 import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/model/User';
-import {usernameValidation} from '@/schemas/signUpSchema'
 import { getServerSession, User } from 'next-auth';
 import { string, z } from 'zod';
 import { authOptions } from '../../auth/[...nextauth]/options';
 
-
-const usernameQuerySchema = z.object({
-    username: usernameValidation
-})
 
 export async function DELETE(request: Request, {params}: {params : {messageid:string}} ){
  const messageId = params.messageid;
@@ -31,10 +26,10 @@ export async function DELETE(request: Request, {params}: {params : {messageid:st
 
     try {
 
-       const result = await UserModel.updateOne(
-        {_id: user._id},
-        {$pull: {mesages:{_id : {messageId}}}} 
-       )
+        const result = await UserModel.updateOne(
+            { _id: user._id },
+            { $pull: { messages: { _id: messageId } } } 
+        );
 
         if(!result.modifiedCount){
           
@@ -43,7 +38,7 @@ export async function DELETE(request: Request, {params}: {params : {messageid:st
                     success: false,
                     message: "Message not found or already deleted."
                 },
-                { status: 401 } 
+                { status: 404 } 
             
             )
         }

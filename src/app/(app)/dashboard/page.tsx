@@ -161,10 +161,10 @@ export default function Dashboard() {
       </div>
 
       {isLoading ? (
-        <Loader2 className="animate-spin" />
+        <Loader2 className="animate-spin mt-12" />
       ) : (
         <>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12">
             {messages.length > 0 ? (
               currentMessages.map((message) => (
                 <MessageCard

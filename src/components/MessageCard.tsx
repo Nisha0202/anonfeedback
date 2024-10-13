@@ -18,7 +18,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { X } from 'lucide-react'
+import { Trash, X } from 'lucide-react'
 import { Button } from './ui/button'
 import { Message } from '@/model/Message'
 import { useToast } from '@/hooks/use-toast'
@@ -27,7 +27,7 @@ import axios from 'axios'
 import { ApiResponse } from '@/types/ApiResponse'
 
 type MessageCardProps = {
-   
+
     message: Message,
     onMessageDelete: (messageId: string) => void
 }
@@ -56,12 +56,23 @@ export default function MessageCard({ message, onMessageDelete }: MessageCardPro
 
 
     return (
-        <Card>
+        <Card className=''>
             <CardHeader>
-                <CardTitle>Card Title</CardTitle>
+
+                <CardDescription>Message</CardDescription>
+            </CardHeader>
+            <CardContent className='h-32'>
+                <p>{message.content}</p>
+            </CardContent>
+            <CardFooter className='text-sm '>
+                <p className='flex-1 text-gray-600'>{new Date(message.createAt).toLocaleString('en-US', {
+                    month: 'long', day: 'numeric', year: 'numeric',
+                    hour: 'numeric', minute: 'numeric', hour12: true
+                })}</p>
+
                 <AlertDialog>
                     <AlertDialogTrigger asChild>
-                        <Button variant="destructive"><span><X className='w-4 h-4' /></span></Button>
+                        <Button variant={'outline'}><span><Trash className='w-4 h-4 text-red-600' /></span></Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>
@@ -77,13 +88,6 @@ export default function MessageCard({ message, onMessageDelete }: MessageCardPro
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialog>
-                <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <p>Card Content</p>
-            </CardContent>
-            <CardFooter>
-                <p>Card Footer</p>
             </CardFooter>
         </Card>
 
