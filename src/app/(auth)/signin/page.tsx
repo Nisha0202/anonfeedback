@@ -57,7 +57,7 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
     
           toast({
             title: errorMessage,
-            description: result.error,
+            description: 'Invalid credentials.',
             variant: 'destructive'
           });
     

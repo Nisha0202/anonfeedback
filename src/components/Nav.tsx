@@ -49,13 +49,20 @@ export default function Navbar() {
           <div className="hidden sm:ml-6 sm:flex sm:items-center text-sm">
             <div onClick={toggleLogin}>
               {session ? (
-                <div className="flex items-center justify-between">
-                  <span className=''>Hi <span className='text-rose-600'>@{session?.user.userName}</span> 🥰</span>
-
-                  <Button  onClick={() => signOut()}  variant="outline" className="text-sm font-medium rounded-sm ml-6">
-                    Sign Out
-                  </Button>
+                <div className="flex gap-4 items-center justify-between">
+                <div className=''>
+                    Hi <span className='text-rose-600 cursor-pointer' onClick={(e) => e.stopPropagation()}>@{session?.user.userName}</span> 🥰
                 </div>
+            
+                <Button 
+                    onClick={() => signOut()} 
+                    variant="outline" 
+                    className="text-sm font-medium rounded-sm border-2"
+                >
+                    Sign Out
+                </Button>
+            </div>
+            
               ) : (
                 <>
 
