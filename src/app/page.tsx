@@ -1,6 +1,6 @@
 // import Nav from "@/components/Nav";
 import { Button } from "@/components/ui/button"
-import { User,Star,ExternalLink } from "lucide-react"
+import { User, Star, ExternalLink } from "lucide-react"
 import dynamic from 'next/dynamic';
 const Nav = dynamic(() => import('@/components/Nav'));
 
@@ -32,22 +32,25 @@ export default function Component() {
               How It Works
             </h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-  <FeatureCard
-    icon={<User className="h-6 w-8 text-blue-500" />} // Changed to User icon for profile
-    title="Create Your Profile"
-    description="Sign up and set up your anonymous profile! Choose a unique username that will appear in the link you share with others."
-  />
-  <FeatureCard
-    icon={<ExternalLink className="h-6 w-6 text-green-500" />} // Changed to Share icon for connecting and sharing
-    title="Connect & Share"
-    description="Send your URL to people you want to ask questions or get feedback from. Our platform guarantees complete anonymity for all feedback providers!"
-  />
-  <FeatureCard
-    icon={<Star className="h-6 w-6 text-purple-500" />} // Changed to Star icon for growth and improvement
-    title="Grow & Improve"
-    description="Receive genuine feedback, take a moment to reflect, and use those insights for your personal and professional growth."
-  />
-</div>
+              <FeatureCard
+              index= "1"
+                icon={<User className="h-6 w-8 text-blue-500" />}
+                title="Create Your Profile"
+                description="Sign up and set up your anonymous profile! Choose a unique username that will appear in the link you share with others."
+              />
+              <FeatureCard
+                   index= "2"
+                icon={<ExternalLink className="h-6 w-6 text-green-500" />}
+                title="Connect & Share"
+                description="Send your URL to people you want to ask questions or get feedback from. Our platform guarantees complete anonymity for all feedback providers!"
+              />
+              <FeatureCard
+                   index= "3"
+                icon={<Star className="h-6 w-6 text-purple-500" />}
+                title="Grow & Improve"
+                description="Receive genuine feedback, take a moment to reflect, and use those insights for your personal and professional growth."
+              />
+            </div>
 
 
           </div>
@@ -64,11 +67,11 @@ export default function Component() {
   )
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
+function FeatureCard({index, icon, title, description }: {index: string; icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg">
-      {icon}
-      <h3 className="mt-4 mb-2 text-xl font-semibold ">{title}</h3>
+    <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg">
+    <div className=" text-green-700 font-bold text-lg" > {index}</div> 
+      <h3 className="mt-2 mb-2 text-xl font-semibold ">{title}</h3>
       <p className="text-gray-600 text-sm">{description}</p>
     </div>
   )
