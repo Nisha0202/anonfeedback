@@ -1,5 +1,4 @@
 
-/* eslint-disable rule-name */
 
 import * as React from "react"
 
