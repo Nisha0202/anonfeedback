@@ -129,7 +129,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="container py-8 px-6">
+    <div className="container py-8 px-6 mx-auto">
       <div className="flex justify-between items-center">
         <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback Dashboard</Link>
         <Button onClick={() => fetchMessages(true)} variant="outline" size={'sm'} className=" flex items-center space-x-2">
