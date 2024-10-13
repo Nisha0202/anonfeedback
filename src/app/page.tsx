@@ -18,12 +18,7 @@ export default function Component() {
           <p className="text-sm lg:text-base text-gray-600 pb-8 max-w-2xl mx-auto">
             Empower yourself with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
           </p>
-          <div className="flex justify-center space-x-4">
-            <Button className="text-sm font-medium rounded-sm hover:bg-rose-500">Get Started</Button>
-            <Button variant="outline" className="text-sm font-medium rounded-sm">
-              Learn More
-            </Button>
-          </div>
+   
         </section>
 
         <section className="bg-white py-14">

@@ -59,7 +59,7 @@ export default function Navbar() {
               {session ? (
                 <div className="flex gap-4 items-center justify-between">
                   <div className=''>
-                    Hi <span className='text-rose-600 cursor-pointer' onClick={(e) => e.stopPropagation()}>@{session?.user.userName}</span> 🥰
+                    Hi <span className='text-rose-700 cursor-pointer' onClick={(e) => e.stopPropagation()}>@{session?.user.userName}</span> 🥰
                   </div>
 
                   <Button
@@ -102,7 +102,7 @@ export default function Navbar() {
                   <div className='mt-6'>
                     {session &&
                       <div className="flex flex-col gap-4 items-start text-sm">
-                        <div className=''>Hi <span className='text-rose-600'>@{session?.user.userName}</span> 🥰</div>
+                        <div className=''>Hi <span className='text-rose-700'>@{session?.user.userName}</span> 🥰</div>
 
                       </div>
                     }

@@ -263,7 +263,7 @@ function SignUpForm() {
           </Form>
 
           <div className="mt-4 w-full text-center text-sm text-gray-600" >
-            <h1>Already a signed up? <Link href='/signin' className="text-rose-600 font-medium hover:text-rose-500">Sign In</Link></h1>
+            <h1>Already a signed up? <Link href='/signin' className="text-rose-700 font-medium hover:text-rose-500">Sign In</Link></h1>
           </div>
 
 

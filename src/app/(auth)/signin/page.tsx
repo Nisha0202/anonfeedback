@@ -159,7 +159,7 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
           </Form>
 
           <div className="mt-4 w-full text-center text-sm text-gray-600" >
-            <h1>New here? <Link href='/signup' className="text-rose-600 font-medium hover:text-rose-500">Sign Up</Link></h1>
+            <h1>New here? <Link href='/signup' className="text-rose-700 font-medium hover:text-rose-500">Sign Up</Link></h1>
           </div>
 
 

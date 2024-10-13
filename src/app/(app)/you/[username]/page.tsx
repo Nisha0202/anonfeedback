@@ -17,7 +17,8 @@ import { usePathname } from 'next/navigation'
 
 export default function MessageInput() {
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); // Optional loading state
+  const [loading, setLoading] = useState(false); // Sent message loading state
+  const [suggesting, setSuggesting] = useState(false); // Suggesting messages state
   const pathname = usePathname();
   const username = pathname.split("/").pop();
   const { toast } = useToast();
@@ -194,7 +195,7 @@ export default function MessageInput() {
 
   // Function to handle getting the suggested message
   const handleSuggestMessage = async () => {
-    setLoading(true); // Set loading state to true
+    setSuggesting(true); // Set loading state to true
     try {
       const response = await axios.get("/api/suggest-messages"); // Call the API route
       // console.log(response);
@@ -209,7 +210,7 @@ export default function MessageInput() {
     } catch (error) {
       console.error("Error fetching suggestion:", error);
     } finally {
-      setLoading(false);
+      setSuggesting(false);
     }
   };
 
@@ -219,10 +220,10 @@ export default function MessageInput() {
 
   return (
     <div className="flex justify-center items-center border-2 min-h-[99vh] bg-gray-50">
-      <div className="px-4 md:px-8 lg:px-12 bg-gray-100 py-12">
+      <div className="px-4 md:px-8 lg:px-12 bg-gray-100 py-12 rounded">
         <Link href="/" title="Home" className="text-xl lg:text-2xl font-bold mb-12">
           Share Feedback Anonymously on
-          <span className="text-rose-600"> AnonFeedback</span>
+          <span className="text-rose-700"> AnonFeedback</span>
         </Link>
         <h2 className="text-sm text-gray-600 mb-12 mt-1">
           Write Your Anonymous Message
@@ -238,14 +239,16 @@ export default function MessageInput() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    onClick={handleSuggestMessage}
-                    variant="outline"
-                    className="flex items-center space-x-2"
-                  >
-                    <Lightbulb className="w-4 h-4" />
-                    <span>Suggest Message</span>
-                  </Button>
+                <Button
+      onClick={handleSuggestMessage}
+      variant="outline"
+      className="flex items-center space-x-2"
+      disabled={suggesting} // disable the button while loading
+    >
+      <Lightbulb className="w-4 h-4" />
+      <span>{suggesting ? 'Suggesting...' : 'Suggest Message'}</span>
+    </Button>
+  
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>Click to get a suggested message</p>
