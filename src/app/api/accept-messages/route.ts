@@ -23,15 +23,12 @@ export async function POST(request: Request) {
 
     const userId = user?._id;
 
-    const { acceptMessage } = await request.json();
-
-
-
+    const { acceptMessages } = await request.json();
     try {
 
         const updateUser = await UserModel.findByIdAndUpdate(
             userId,
-            { isAcceptingMessage: acceptMessage },
+            { isAcceptingMessage: acceptMessages },
             { new: true }
         )
         if (!updateUser) {
@@ -44,8 +41,6 @@ export async function POST(request: Request) {
                 },
                 { status: 401 }
             )
-
-
         }
 
         return Response.json(
@@ -103,7 +98,7 @@ export async function GET(request: Request) {
             return Response.json(
                 {
                     success: false,
-                    message: "User not found.",
+                    message: "User not found or no message.",
 
                 },
                 { status: 404 }
