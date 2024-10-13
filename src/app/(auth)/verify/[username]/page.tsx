@@ -73,7 +73,7 @@ function VerifyAccount() {
           // Request was made but no response received
           toast({
             title: "Network Error",
-            description: "No response received. Please check your network connection.",
+            description: axioserror.request.data.message || "No response received. Please check your network connection.",
           });
         } else {
           // Something else happened in setting up the request
