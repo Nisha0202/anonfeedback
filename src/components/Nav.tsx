@@ -13,7 +13,7 @@ import {
 export default function Navbar() {
   const { data: session } = useSession();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const username = session?.user.userName;
   const NavItems = () => (
     <>
       <Link href="/" className="hover:text-gray-950 text-sm">
@@ -22,6 +22,14 @@ export default function Navbar() {
       <Link href="/dashboard" className="hover:text-gray-950 text-sm">
         Dashboard
       </Link>
+      {session?.user && <div>
+        <Link href={`/you/${username}`} className="hover:text-gray-950 text-sm">
+          Message
+        </Link>
+      </div>
+
+      }
+
     </>
   );
 
@@ -50,19 +58,19 @@ export default function Navbar() {
             <div onClick={toggleLogin}>
               {session ? (
                 <div className="flex gap-4 items-center justify-between">
-                <div className=''>
+                  <div className=''>
                     Hi <span className='text-rose-600 cursor-pointer' onClick={(e) => e.stopPropagation()}>@{session?.user.userName}</span> 🥰
-                </div>
-            
-                <Button 
-                    onClick={() => signOut()} 
-                    variant="outline" 
+                  </div>
+
+                  <Button
+                    onClick={() => signOut()}
+                    variant="outline"
                     className="text-sm font-medium rounded-sm border-2"
-                >
+                  >
                     Sign Out
-                </Button>
-            </div>
-            
+                  </Button>
+                </div>
+
               ) : (
                 <>
 
@@ -112,7 +120,7 @@ export default function Navbar() {
                   {session ? (
                     <div className="flex flex-col items-start text-sm pt-4">
 
-                      <Button onClick={() => signOut()}  variant="outline" className="text-sm font-medium rounded-sm">
+                      <Button onClick={() => signOut()} variant="outline" className="text-sm font-medium rounded-sm">
                         Sign Out
                       </Button>
                     </div>

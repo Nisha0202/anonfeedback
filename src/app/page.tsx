@@ -51,8 +51,6 @@ export default function Component() {
                 description="Receive genuine feedback, take a moment to reflect, and use those insights for your personal and professional growth."
               />
             </div>
-
-
           </div>
         </section>
       </main>
