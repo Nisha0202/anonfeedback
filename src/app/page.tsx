@@ -19,7 +19,7 @@ export default function Component() {
             Empower your team with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
           </p>
           <div className="flex justify-center space-x-4">
-            <Button className="text-sm font-medium rounded-sm bg-rose-600 hover:bg-rose-500">Get Started</Button>
+            <Button className="text-sm font-medium rounded-sm hover:bg-rose-500">Get Started</Button>
             <Button variant="outline" className="text-sm font-medium rounded-sm">
               Learn More
             </Button>

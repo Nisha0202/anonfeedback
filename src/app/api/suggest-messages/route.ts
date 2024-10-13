@@ -18,7 +18,7 @@ export const POST = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     // Ensure you're returning the correct structure of the response
-    const responseData = await result.toDataStreamResponse(); // Await if it's asynchronous
+    const responseData = result.toDataStreamResponse(); // Await if it's asynchronous
     res.status(200).json(responseData);
   } catch (error) {
     res.status(500).json({
