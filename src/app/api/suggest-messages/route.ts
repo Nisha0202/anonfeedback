@@ -16,7 +16,7 @@ export async function GET() {
       ],
       "model": "llama3-8b-8192",
       "temperature": 1,
-      "max_tokens": 1024,
+      "max_tokens": 30,
       "top_p": 1,
       "stream": false,
       "stop": null
