@@ -22,7 +22,6 @@ export default function MessageInput() {
   const username = pathname.split("/").pop();
   const { toast } = useToast();
 
-  // const suggestedMessages = [
   //   // Compliments
   //   "I just adore how you always light up the room!",
   //   "Your kindness is as warm as a summer breeze, honey.",
@@ -198,10 +197,11 @@ export default function MessageInput() {
     setLoading(true); // Set loading state to true
     try {
       const response = await axios.get("/api/suggest-messages"); // Call the API route
-      console.log(response);
-      console.log("hi",response.data);
+      // console.log(response);
+      // console.log("hi",response.data);
       if (response.status == 200) {
-        const suggestedMessage = response.data?.message || "";
+
+        const suggestedMessage = response.data?.message.replace(/"/g, '') || "";
         setMessage(suggestedMessage);
       }
 
@@ -212,11 +212,6 @@ export default function MessageInput() {
       setLoading(false);
     }
   };
-
-  // const handleSuggestMessage = () => {
-  //   const randomIndex = Math.floor(Math.random() * suggestedMessages.length)
-  //   setMessage(suggestedMessages[randomIndex])
-  // }
 
 
 
