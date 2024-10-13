@@ -5,19 +5,21 @@ import { useToast } from "@/hooks/use-toast"
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Trash2, Search, Loader2 } from "lucide-react";
+import { RefreshCw, Trash2, Search, Loader2, CopyIcon } from "lucide-react";
 import MessageCard from "@/components/MessageCard"
 import axios, { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
 import { Switch } from "@/components/ui/switch";
 import { acceptMessageSchema } from "@/schemas/acceptMessageSchema"
 import { Message } from "@/model/Message"
+import { useWindowSize } from "usehooks-ts";
 
 export default function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSwitchLoading, setSwitchLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [profileUrl, setProfileUrl] = useState('');
 
   const { toast } = useToast();
   const { data: session } = useSession();
@@ -73,6 +75,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!session || !session.user) return;
+
+    const username = session?.user.userName;
+
+    const url = `${window.location.origin}/you/${username}`;
+    setProfileUrl(url);
     fetchMessages();
     fetchAcceptMessage();
   }, [session]);
@@ -102,6 +109,17 @@ export default function Dashboard() {
   const currentMessages = messages.slice(indexOfFirstMessage, indexOfLastMessage);
   const totalPages = Math.ceil(messages.length / messagesPerPage);
 
+
+
+  const copyUrl = () => {
+    navigator.clipboard.writeText(profileUrl);
+    toast({
+      title: "URL Copied",
+      variant: 'default',
+    });
+  }
+
+
   if (!session || !session.user) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -114,19 +132,32 @@ export default function Dashboard() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center">
         <h1 className="text-xl lg:text-2xl font-bold">AnonFeedback Dashboard</h1>
-        <Button onClick={() => fetchMessages(true)}  variant="outline" size={'sm'} className=" flex items-center space-x-2">
+        <Button onClick={() => fetchMessages(true)} variant="outline" size={'sm'} className=" flex items-center space-x-2">
           <RefreshCw className="h-4 w-4" />
         </Button>
       </div>
 
-      <div className="mt-2 flex items-center space-x-4">
-        <span className="text-sm">Accepting Messages</span>
-        <Switch
-          className="h-5 w-10"
-          checked={acceptMessages}
-          onCheckedChange={handleSwitchChange}
-          disabled={isSwitchLoading}
-        />
+      <div className="mt-2 flex flex-col lg:flex-row  items-start lg:items-center justify-start lg:justify-between">
+        <div className="mt-2 flex items-center space-x-2">
+
+          <span className="text-sm">Accepting Messages</span>
+          <Switch
+            className="h-5 w-10"
+            checked={acceptMessages}
+            onCheckedChange={handleSwitchChange}
+            disabled={isSwitchLoading}
+          />
+        </div>
+<div>
+   {acceptMessages && <div className="text-sm flex gap-2 items-center">
+          {profileUrl}
+          <Button onClick={copyUrl} variant="outline" size="sm" className="flex items-center space-x-2">
+            <CopyIcon className="h-4 w-4" />
+            <span className="text-xs">Copy URL</span>
+          </Button>
+        </div>} 
+</div>
+      
       </div>
 
       {isLoading ? (
@@ -143,7 +174,7 @@ export default function Dashboard() {
                 />
               ))
             ) : (
-              <div className="mt-6">No messages found.</div>
+              <div className="mt-8">No messages found.</div>
             )}
           </div>
 
