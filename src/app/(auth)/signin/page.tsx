@@ -19,7 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
-import { Divide, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import { signInSchema } from "@/schemas/signInSchema"
 
 function SignInForm() {
@@ -75,6 +75,7 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
         }
     
       } catch (error) {
+        console.log(error);
         toast({
           title: "Unexpected Error",
           description:  "An unknown error occurred.",

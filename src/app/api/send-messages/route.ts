@@ -46,7 +46,7 @@ export async function POST(request: Request){
 
     } catch (error) {
         
-        console.log("Unexpected error");
+        console.log("Unexpected error", error);
 
         return Response.json(
             {

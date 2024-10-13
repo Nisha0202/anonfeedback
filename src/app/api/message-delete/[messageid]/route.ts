@@ -54,7 +54,7 @@ export async function DELETE(request: Request, {params}: {params : {messageid:st
 
         
     } catch (error) {
-        console.error("Error in message deletion.");
+        console.error("Error in message deletion.", error);
         return Response.json(
             {
                 success: false,

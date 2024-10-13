@@ -18,7 +18,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Trash, X } from 'lucide-react'
+import { Trash} from 'lucide-react'
 import { Button } from './ui/button'
 import { Message } from '@/model/Message'
 import { useToast } from '@/hooks/use-toast'

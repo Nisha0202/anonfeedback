@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
-import { Divide, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import Link from 'next/link';
 
 function SignUpForm() {
@@ -101,7 +101,7 @@ function SignUpForm() {
     };
 
     checkUsernameUnique();
-  }, [username]);
+  }, [username, toast]);
 
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {

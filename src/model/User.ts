@@ -1,4 +1,4 @@
-import mongoose, {Schema, Document, model, models} from "mongoose";
+import {Schema, Document, model, models} from "mongoose";
 import {Message, MessageSchema} from "./Message";
 
 // Define the User interface extending the Document from Mongoose

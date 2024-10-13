@@ -53,7 +53,7 @@ export async function POST(request: Request) {
 
 
     } catch (error) {
-        console.log("failed to update user status to accept messages");
+        console.log(error || "failed to update user status to accept messages");
 
         return Response.json(
             {
@@ -117,7 +117,7 @@ export async function GET(request: Request) {
             { status: 200 }
         )
     } catch (error) {
-        console.log("Error in getting message acceptance status");
+        console.log(error || "Error in getting message acceptance status");
 
         return Response.json(
             {

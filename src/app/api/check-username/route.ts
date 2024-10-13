@@ -59,7 +59,7 @@ export async function GET(request: Request){
 
         
     } catch (error) {
-        console.error("Error Check unique name");
+        console.error("Error Check unique name", error);
         return Response.json(
             {
                 success: false,
