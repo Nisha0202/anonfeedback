@@ -1,9 +1,4 @@
 /* eslint-disable rule-name */
-// Some code that violates the rule
-/* eslint-enable rule-name */
-
-
-
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
