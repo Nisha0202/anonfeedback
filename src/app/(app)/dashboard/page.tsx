@@ -12,7 +12,6 @@ import { ApiResponse } from "@/types/ApiResponse"
 import { Switch } from "@/components/ui/switch";
 import { acceptMessageSchema } from "@/schemas/acceptMessageSchema"
 import { Message } from "@/model/Message"
-import { useWindowSize } from "usehooks-ts";
 import Link from "next/link";
 
 export default function Dashboard() {
@@ -154,7 +153,7 @@ export default function Dashboard() {
           {profileUrl}
           <Button onClick={copyUrl} variant="outline" size="sm" className="flex items-center space-x-2">
             <CopyIcon className="h-4 w-4" />
-            <span className="text-xs">Copy URL</span>
+            <span className="text-sm">Copy URL</span>
           </Button>
         </div>} 
 </div>

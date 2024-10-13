@@ -7,11 +7,9 @@ export async function POST(request: Request){
 
     await dbConnect();
     const {username, content} = await request.json();
-
+   
     try {
-
-        const user = await UserModel.findOne({username});
-
+        const user = await UserModel.findOne({userName: username});
         if(!user){
 
             return Response.json(
@@ -24,7 +22,7 @@ export async function POST(request: Request){
         }
 
         //is user accepting the messages
-        if(!user.isAcceptmessages){
+        if(!user.isAcceptingMessage){
             return Response.json(
                 {
                     success: false,
@@ -46,7 +44,6 @@ export async function POST(request: Request){
             { status: 200 }
         )
 
-
     } catch (error) {
         
         console.log("Unexpected error");
@@ -61,8 +58,6 @@ export async function POST(request: Request){
 
 
     }
-
-
 
 
 }

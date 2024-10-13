@@ -6,5 +6,7 @@ npm install --save-dev @types/react-slick // npm i date-fns
 // improving performance by limiting how often the state is updated (useful for things like API calls).
 // dynamic import
 
+//optimized seo by descrivetive link
+
 
 

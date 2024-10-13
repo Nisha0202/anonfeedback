@@ -16,17 +16,17 @@ export default function Navbar() {
   const username = session?.user.userName;
   const NavItems = () => (
     <>
-      <Link href="/" className="hover:text-gray-950 text-sm">
+      <Link href="/" title="Home" className="hover:text-gray-950 text-sm">
         Home
       </Link>
       <Link href="/dashboard" className="hover:text-gray-950 text-sm">
         Dashboard
       </Link>
-      {session?.user && <div>
+      {session?.user && 
         <Link href={`/you/${username}`} className="hover:text-gray-950 text-sm">
           Message
         </Link>
-      </div>
+    
 
       }
 
@@ -46,7 +46,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 flex items-center">
+            <Link href="/" title="Home" className="flex-shrink-0 flex items-center">
 
               <span className="ml-2 text-lg font-bold ">AnonFeedback</span>
             </Link>
