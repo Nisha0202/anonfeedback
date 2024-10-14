@@ -65,7 +65,7 @@ export default function Navbar() {
                   <Button
                     onClick={() => signOut()}
                     variant="outline"
-                    className="text-sm font-medium rounded-sm border-2"
+                    className="text-sm font-medium rounded-sm border border-transparent"
                   >
                     Sign Out
                   </Button>
@@ -74,8 +74,8 @@ export default function Navbar() {
               ) : (
                 <>
 
-                  <Button onClick={() => signIn()} className="bg-rose-700  hover:bg-rose-600 rounded-sm  border border-transparent 
-                  text-sm font-medium text-white ">
+                  <Button onClick={() => signIn()} variant={'outline'} className="text-rose-700  hover:text-rose-600 rounded-sm
+                  text-sm font-bold ">
                     Sign In
                   </Button>
                 </>
@@ -84,7 +84,7 @@ export default function Navbar() {
           </div>
 
 
-          <div className="flex items-center sm:hidden">
+          <div className="flex items-center sm:hidden bg-gray-100">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
@@ -125,8 +125,8 @@ export default function Navbar() {
                       </Button>
                     </div>
                   ) : (
-                    <Button onClick={() => signIn()} className="mt-4 bg-rose-700  hover:bg-rose-600 rounded-sm  border border-transparent 
-                  text-sm font-medium text-white">
+                    <Button variant={'outline'} onClick={() => signIn()} className="mt-4 text-rose-700 hover:text-rose-600 rounded-sm
+                  text-sm font-bold ">
 
                       Sign In
                     </Button>
