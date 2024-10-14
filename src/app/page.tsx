@@ -11,19 +11,23 @@ export default function Component() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Nav />
       <main className="flex-grow">
-        <section className="container mx-auto px-6 py-16 lg:py-18 text-center space-y-3">
-          <h1 className="text-xl lg:text-2xl font-bold">
-            Share Feedback Anonymously
-          </h1>
-          <p className="text-sm lg:text-base text-gray-600 pb-8 max-w-2xl mx-auto">
+        <section className="container mx-auto px-6 py-16 lg:py-20 text-center">
+        <h1 className="text-2xl lg:text-5xl md:text-3xl font-bold pt-6
+  bg-gradient-to-r from-rose-900 via-rose-400 to-rose-600 bg-clip-text text-transparent
+  animate-[wave-gradient_4s_ease_infinite] bg-[length:200%_200%]"
+  >
+  Get Feedback Anonymously
+</h1>
+
+          <p className="text-sm lg:text-base text-gray-600 pt-4 max-w-2xl mx-auto">
             Empower yourself with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
           </p>
    
         </section>
 
-        <section className="bg-white py-14">
+        <section className="pb-12">
           <div className="container mx-auto px-6">
-            <h2 className="text-xl font-bold text-center mb-6">
+            <h2 className=" text-xl lg:text-2xl font-bold text-center mb-8 lg:mb-6">
               How It Works
             </h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -50,7 +54,7 @@ export default function Component() {
         </section>
       </main>
 
-      <footer className="bg-gray-100 py-6">
+      <footer className="bg-gray-100 pb-4 py-7">
         <div className="container mx-auto px-6 text-center text-gray-600 text-sm">
           <p>&copy; 2024 AnonFeedback. All rights reserved.</p>
 
@@ -62,9 +66,9 @@ export default function Component() {
 
 function FeatureCard({index,  title, description }: {index: string; title: string; description: string }) {
   return (
-    <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg">
+    <div className="flex flex-col items-center text-center p-8 bg-gray-100 rounded">
     <div className=" text-green-700 font-bold text-lg" > {index}</div> 
-      <h3 className="mt-2 mb-2 text-xl font-semibold ">{title}</h3>
+      <h3 className="mt-2 mb-2 text-lg font-semibold ">{title}</h3>
       <p className="text-gray-600 text-sm">{description}</p>
     </div>
   )

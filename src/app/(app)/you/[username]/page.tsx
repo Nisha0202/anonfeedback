@@ -23,7 +23,7 @@ export default function MessageInput() {
   const username = pathname.split("/").pop();
   const { toast } = useToast();
 
-  //   // Compliments
+
   //   "I just adore how you always light up the room!",
   //   "Your kindness is as warm as a summer breeze, honey.",
   //   "You are sharper than a tack and twice as charming.",
@@ -198,8 +198,7 @@ export default function MessageInput() {
     setSuggesting(true); // Set loading state to true
     try {
       const response = await axios.get("/api/suggest-messages"); // Call the API route
-      // console.log(response);
-      // console.log("hi",response.data);
+     
       if (response.status == 200) {
 
         const suggestedMessage = response.data?.message.replace(/"/g, '') || "";
@@ -222,7 +221,7 @@ export default function MessageInput() {
     <div className="flex justify-center items-center border-2 min-h-[99vh] bg-gray-50">
       <div className="px-4 md:px-8 lg:px-12 bg-gray-100 py-12 rounded">
         <Link href="/" title="Home" className="text-xl lg:text-2xl font-bold mb-12">
-          Share Feedback Anonymously on
+          Get Feedback Anonymously on
           <span className="text-rose-700"> AnonFeedback</span>
         </Link>
         <h2 className="text-sm text-gray-600 mb-12 mt-1">
