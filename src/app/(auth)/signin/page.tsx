@@ -1,7 +1,7 @@
 
 'use client'
-import React, {  useState } from "react"
-import {  signIn } from "next-auth/react"
+import React, { useState } from "react"
+import { signIn } from "next-auth/react"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -23,70 +23,72 @@ import { Loader2 } from "lucide-react"
 import { signInSchema } from "@/schemas/signInSchema"
 
 function SignInForm() {
-const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form is being submitted
+  const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form is being submitted
+  const [identifier, setIdentifier] = useState(""); // State for identifier input
+  const [password, setPassword] = useState(""); // State for password input
 
- const { toast } = useToast();
+  const { toast } = useToast();
   const router = useRouter();
 
-    //zod implementation
-    const form = useForm<z.infer<typeof signInSchema>>({
-      resolver: zodResolver(signInSchema),
-      defaultValues: {
-        identifier: '',
-        password: ''
-      }
-    });
+  //zod implementation
+  const form = useForm<z.infer<typeof signInSchema>>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      identifier: '',
+      password: ''
+    }
+  });
 
 
-    const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-      setIsSubmitting(true);
-    
-      try {
-        const result = await signIn('credentials', {
-          redirect: false,
-          email: data.identifier,
-          password: data.password
-        });
-    
-        if (result?.error) {
-          let errorMessage = "Sign In Failed";
-          if (result.error.includes("credentials")) {
-            errorMessage = "Invalid credentials. Please check your email or password.";
-          } else if (result.error.includes("email")) {
-            errorMessage = "Email not found. Please sign up first.";
-          }
-    
-          toast({
-            title: errorMessage,
-            description: 'Invalid credentials.',
-            variant: 'destructive'
-          });
-    
-        } else if (result?.url) {
-          toast({
-            title: "Success",
-            description: "Sign in successful.",
-            action: (
-              <ToastAction altText="Welcome user">Welcome!</ToastAction>
-            ),
-          });
-    
-          setTimeout(() => { router.replace('/') }, 1400);
+  const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    setIsSubmitting(true);
+
+    try {
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: data.identifier,
+        password: data.password
+      });
+
+      if (result?.error) {
+        let errorMessage = "Sign In Failed";
+        if (result.error.includes("credentials")) {
+          errorMessage = "Invalid credentials. Please check your email or password.";
+        } else if (result.error.includes("email")) {
+          errorMessage = "Email not found. Please sign up first.";
         }
-    
-      } catch (error) {
-        console.log(error);
+
         toast({
-          title: "Unexpected Error",
-          description:  "An unknown error occurred.",
+          title: errorMessage,
+          description: 'Invalid credentials.',
           variant: 'destructive'
         });
 
-      } finally {
-        setIsSubmitting(false);
+      } else if (result?.url) {
+        toast({
+          title: "Success",
+          description: "Sign in successful.",
+          action: (
+            <ToastAction altText="Welcome user">Welcome!</ToastAction>
+          ),
+        });
+
+        setTimeout(() => { router.replace('/') }, 1400);
       }
-    };
-    
+
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Unexpected Error",
+        description: "An unknown error occurred.",
+        variant: 'destructive'
+      });
+
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
 
 
   return (
@@ -110,9 +112,14 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
                   <FormItem>
                     <FormLabel>Email or Username</FormLabel>
                     <FormControl>
-                      <Input  placeholder="email or username" className="rounded-sm"
+                      <Input placeholder="email or username" className="rounded-sm"
                         {...field}
+                        onChange={(e) => {
+                          field.onChange(e); 
+                          setIdentifier(e.target.value); // Update identifier state
+                        }}
                       />
+                     
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -128,18 +135,22 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
                     <FormControl>
                       <Input type="password" placeholder="password" className="rounded-sm"
                         {...field}
+                        onChange={(e) => {
+                          field.onChange(e); 
+                          setPassword(e.target.value); // Update identifier state
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-  <br />
+              <br />
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                className="flex items-center justify-center w-full font-medium rounded-sm bg-rose-700  hover:bg-rose-600"
+                disabled={isSubmitting || !identifier || !password}
+                className="w-full font-semibold text-gray-50 rounded-sm bg-rose-700  hover:bg-rose-600"
               >
                 {isSubmitting ? (
                   <>
@@ -159,7 +170,7 @@ const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form
           </Form>
 
           <div className="mt-4 w-full text-center text-sm text-gray-600" >
-            <h1>New here? <Link href='/signup' className="text-rose-700 font-medium hover:text-rose-500">Sign Up</Link></h1>
+            <h1>New here? <Link href='/signup' className="text-rose-700 font-medium hover:text-rose-600 hover:font-semibold">Sign Up</Link></h1>
           </div>
 
 

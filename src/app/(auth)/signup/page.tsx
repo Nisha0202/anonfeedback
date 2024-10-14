@@ -28,6 +28,9 @@ function SignUpForm() {
   const [usernameMessage, setUsernameMessage] = useState(''); // Stores validation or status messages for the username
   const [isUsernameChecking, setIsUsernameChecking] = useState(false); // To track if the username is being checked (for uniqueness)
   const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form is being submitted
+  const [email, setEmail] = useState(""); // State for identifier input
+  const [password, setPassword] = useState(""); // State for password input
+ 
 
 
   const debounced = useDebounceCallback(setUsername, 2000)// The value will only update after the user has stopped typing for 500 milliseconds
@@ -217,6 +220,10 @@ function SignUpForm() {
                     <FormControl>
                       <Input type="email" placeholder="m@example.com" className="rounded-sm"
                         {...field}
+                        onChange={(e) => {
+                          field.onChange(e); 
+                          setEmail(e.target.value); // Update identifier state
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -233,6 +240,10 @@ function SignUpForm() {
                     <FormControl>
                       <Input type="password" placeholder="password" className="rounded-sm"
                         {...field}
+                        onChange={(e) => {
+                          field.onChange(e); 
+                          setPassword(e.target.value); // Update identifier state
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -242,8 +253,8 @@ function SignUpForm() {
               <br />
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                className="flex items-center justify-center w-full font-medium rounded-sm bg-rose-700  hover:bg-rose-600"
+                disabled={isSubmitting || !username || !email || !password}
+                className="w-full font-semibold rounded-sm text-gray-50 bg-rose-700  hover:bg-rose-600"
               >
                 {isSubmitting ? (
                   <>
@@ -263,7 +274,7 @@ function SignUpForm() {
           </Form>
 
           <div className="mt-4 w-full text-center text-sm text-gray-600" >
-            <h1>Already a signed up? <Link href='/signin' className="text-rose-700 font-medium hover:text-rose-500">Sign In</Link></h1>
+            <h1>Already a signed up? <Link href='/signin' className=" text-rose-700 font-medium hover:text-rose-600 hover:font-semibold">Sign In</Link></h1>
           </div>
 
 
