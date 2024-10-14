@@ -13,6 +13,12 @@ import { Switch } from "@/components/ui/switch";
 import { acceptMessageSchema } from "@/schemas/acceptMessageSchema"
 import { Message } from "@/model/Message"
 import Link from "next/link";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Dashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -132,13 +138,14 @@ export default function Dashboard() {
     <div className="container py-8 px-6 mx-auto">
       <div className="flex justify-between items-center">
         <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback Dashboard</Link>
-        <Button onClick={() => fetchMessages(true)} variant="outline" size={'sm'} className=" flex items-center space-x-2">
-          <RefreshCw className="h-4 w-4" />
+        {/*refresh */}
+        <Button onClick={() => fetchMessages(true)} size={'sm'} title="Refresh" className="p-0 bg-transparent hover:bg-transparent">
+          <RefreshCw className="h-4 w-4 text-black" />
         </Button>
       </div>
 
       <div className="mt-2 flex flex-col lg:flex-row  items-start lg:items-center justify-start lg:justify-between">
-        <div className="mt-2 flex items-center space-x-2">
+        <div className="mt-2 flex items-center gap-x-3">
 
           <span className="text-sm">Accepting Messages</span>
           <Switch
@@ -151,12 +158,22 @@ export default function Dashboard() {
 
 
         <div>
-          {acceptMessages && <div className="text-sm flex gap-2 items-center">
+          {acceptMessages && <div className="text-sm flex items-center">
             {profileUrl}
-            <Button onClick={copyUrl} variant="outline" size="sm" className="flex items-center space-x-2">
-              <CopyIcon className="h-4 w-4" />
-              <span className="text-sm">Copy URL</span>
-            </Button>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button onClick={copyUrl} variant="outline" size="sm" className="ms-3 flex items-center">
+                    <CopyIcon className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Click here to copy your shareable link</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
           </div>}
         </div>
 

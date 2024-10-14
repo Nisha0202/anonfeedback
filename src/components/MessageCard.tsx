@@ -61,7 +61,7 @@ export default function MessageCard({ message, onMessageDelete }: MessageCardPro
 
                 <CardDescription>Message</CardDescription>
             </CardHeader>
-            <CardContent className='h-32'>
+            <CardContent className='h-20'>
                 <p>{message.content}</p>
             </CardContent>
             <CardFooter className='text-sm '>
