@@ -137,7 +137,7 @@ export default function Dashboard() {
   return (
     <div className="container py-8 px-6 mx-auto">
       <div className="flex justify-between items-center">
-        <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback Dashboard</Link>
+        <Link href={'/'} className="text-xl lg:text-2xl font-bold" title="Home">AnonFeedback Dashboard</Link>
         {/*refresh */}
         <Button onClick={() => fetchMessages(true)} size={'sm'} title="Refresh" className="p-0 bg-transparent hover:bg-transparent">
           <RefreshCw className="h-4 w-4 text-black" />

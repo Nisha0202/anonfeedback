@@ -218,14 +218,13 @@ export default function MessageInput() {
 
 
   return (
-    <div className="flex justify-center items-center border-2 min-h-[99vh] bg-gray-50">
-      <div className="px-4 md:px-8 lg:px-12 bg-gray-100 py-12 rounded">
-        <Link href="/" title="Home" className="text-xl lg:text-2xl font-bold mb-12">
-          Get Feedback Anonymously on
-          <span className="text-rose-700"> AnonFeedback</span>
+    <div className="min-h-[99vh] grid place-items-center bg-gray-50">
+      <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10 border-2 rounded-md">
+        <Link href="/" title="Home" className="text-xl lg:text-2xl font-bold text-rose-700 mb-12">
+         AnonFeedback
         </Link>
         <h2 className="text-sm text-gray-600 mb-12 mt-1">
-          Write Your Anonymous Message
+        Share Feedback Anonymously
         </h2>
         <div className="space-y-8">
           <Textarea
