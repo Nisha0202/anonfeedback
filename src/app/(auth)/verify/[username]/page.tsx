@@ -48,7 +48,7 @@ function VerifyAccount() {
             });
     
           //   Navigate only after successful sign-up
-             setTimeout(() => {router.replace('/');},1400);
+             setTimeout(() => {router.replace('/signin');},1400);
     
     
           } else {

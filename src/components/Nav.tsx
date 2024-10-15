@@ -54,7 +54,7 @@ export default function Navbar() {
               <NavItems />
               {session &&
                       <div className="flex flex-col gap-4 items-start text-sm">
-                        <div className=''>Hi <span className='text-rose-700'>@{session?.user.userName}</span> 🥰</div>
+                        <div className=''>Hi <span className='text-rose-700'>@{session?.user.userName}</span> </div>
 
                       </div>
                     }
@@ -105,7 +105,7 @@ export default function Navbar() {
                   <div className='mt-6'>
                     {session &&
                       <div className="flex flex-col gap-4 items-start text-sm">
-                        <div className=''>Hi <span className='text-rose-700'>@{session?.user.userName}</span> 🥰</div>
+                        <div className=''>Hi <span className='text-rose-700'>@{session?.user.userName}</span></div>
 
                       </div>
                     }
