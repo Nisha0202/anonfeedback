@@ -32,14 +32,34 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://i.pinimg.com/enabled_lo/564x/56/92/f5/5692f5c4d274954ad80e0d1dc57733ff.jpg',
-        secureUrl: 'https://i.pinimg.com/enabled_lo/564x/56/92/f5/5692f5c4d274954ad80e0d1dc57733ff.jpg',
+        url: 'https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg',
+        secureUrl: 'https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg',
         width: 1200,
         height: 630,
         alt: '',
       }
     ]
-  }
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    site: 'AnonFeedback',
+    title: 'AnonFeedback', 
+    description: 'AI-Powered Anonymous Feedback Platform', 
+    creator: '@yesdavidgray',
+    images: { 
+        url: `https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg`,
+        alt: `Preview image for AnonFeedback`, 
+    },
+},
+
+
+
+
+
+
+
+
 };
 
 
