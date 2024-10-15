@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://anonfeedback0.vercel.app"),
   openGraph: {
     title: "AnonFeedback",
-    description: "",
+    description: "AI-Powered Anonymous Feedback Platform",
     url: 'https://anonfeedback0.vercel.app/',
     siteName: "AI-Powered Anonymous Feedback Platform",
     type: 'website',
@@ -44,19 +44,14 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     site: 'AnonFeedback',
-    title: 'AnonFeedback', 
-    description: 'AI-Powered Anonymous Feedback Platform', 
+    title: 'AnonFeedback',
+    description: 'AI-Powered Anonymous Feedback Platform',
     creator: '@yesdavidgray',
-    images: { 
-        url: `https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg`,
-        alt: `Preview image for AnonFeedback`, 
+    images: {
+      url: `https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg`,
+      alt: `Preview image for AnonFeedback`,
     },
-},
-
-
-
-
-
+  },
 
 
 
