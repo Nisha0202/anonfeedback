@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'; // Use NextResponse for API response
 import { Schema, Document, model, models } from "mongoose"; // Import necessary Mongoose modules
 
 // Define the Counts interface
-export interface Counts extends Document {
+interface Counts extends Document {
     totalcount: number;
     updatedAt: Date;
 }
