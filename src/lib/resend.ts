@@ -32,7 +32,7 @@
 import nodemailer from 'nodemailer';
 import { ApiResponse } from "@/types/ApiResponse";
 
-// Create the transporter outside of the function so it isn't created each time
+// Create the transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -43,7 +43,7 @@ const transporter = nodemailer.createTransport({
 
 export async function sendVerificationEmail(useremail: string, username: string, verifycode: string): Promise<ApiResponse> {
   try {
-    // Construct the email HTML content
+    //the email HTML content
     const htmlContent = `
       <div style="background-color: #f5f5f5; padding: 20px;">
         <div style="background-color: #ffffff; border-radius: 8px; padding: 20px;">
