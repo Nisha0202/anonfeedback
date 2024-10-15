@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
 
   // Redirect to home if trying to access dashboard or other protected routes without token
   if (!token && url.pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/signin', request.url));
   }
 
   // Default to allowing the request to continue
