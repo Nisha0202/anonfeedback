@@ -55,12 +55,13 @@ export default function Dashboard() {
     } finally {
       setSwitchLoading(false);
     }
-  }, [setValue, toast]);
+  }, [setValue]);
 
   const fetchMessages = useCallback(async (refresh: boolean = false) => {
     setIsLoading(true);
     try {
       const response = await axios.get<ApiResponse>('/api/get-messages');
+      
       setMessages(response.data.messages || []);
       if (refresh) {
         toast({
@@ -77,7 +78,7 @@ export default function Dashboard() {
     } finally {
       setIsLoading(false);
     }
-  }, [session]);
+  }, [session?.user]);
 
   useEffect(() => {
     if (!session || !session.user) return;
@@ -87,10 +88,11 @@ export default function Dashboard() {
     const url = `${window.location.origin}/you/${username}`;
     setProfileUrl(url);
     fetchMessages();
-    fetchAcceptMessage();
-  }, [session, fetchAcceptMessage]);
+    // fetchAcceptMessage();
+  }, [session?.user, fetchAcceptMessage]);
 
   const handleSwitchChange = async () => {
+     fetchAcceptMessage();
     try {
       const response = await axios.post('/api/accept-messages', {
         acceptMessages: !acceptMessages,
@@ -100,6 +102,7 @@ export default function Dashboard() {
         title: response.data.message,
         variant: 'default',
       });
+     
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
