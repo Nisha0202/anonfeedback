@@ -117,7 +117,7 @@ export default function MessageInput() {
                     disabled={suggesting} // disable the button while loading
                   >
                     <Lightbulb className="w-4 h-4" />
-                    <span>{suggesting ? 'Suggesting...' : 'Suggest Message'}</span>
+                    <span>{suggesting ? 'Suggesting...' : 'AI Suggest Message'}</span>
                   </Button>
 
                 </TooltipTrigger>
