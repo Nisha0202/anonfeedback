@@ -187,7 +187,7 @@ function SignUpForm() {
                   <FormItem>
                     <FormLabel>Username</FormLabel>
                     <FormControl>
-                      <Input placeholder="Nisha" className="rounded-sm"
+                      <Input placeholder="username" className="rounded-sm"
                         {...field}
                         onChange={(e) => {
                           field.onChange(e)
