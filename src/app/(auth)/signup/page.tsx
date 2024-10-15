@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
-import { Loader2 } from "lucide-react"
+import { ArrowLeftCircleIcon, Loader2 } from "lucide-react"
 import Link from 'next/link';
 
 function SignUpForm() {
@@ -30,7 +30,7 @@ function SignUpForm() {
   const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form is being submitted
   const [email, setEmail] = useState(""); // State for identifier input
   const [password, setPassword] = useState(""); // State for password input
- 
+
 
 
   const debounced = useDebounceCallback(setUsername, 2000)// The value will only update after the user has stopped typing for 500 milliseconds
@@ -51,14 +51,14 @@ function SignUpForm() {
   useEffect(() => {
     const checkUsernameUnique = async () => {
       // console.log("hii", username);
-    
+
       // Prevent API call if username is empty
 
       if (username.trim().length == 0) {
         return;
       }
 
-      if (username.trim().length < 3) {  
+      if (username.trim().length < 3) {
         setIsUsernameChecking(true);
         setUsernameMessage('Username must be at least 3 characters long and unique.');
         setIsUsernameChecking(false);
@@ -72,9 +72,9 @@ function SignUpForm() {
         const response = await axios.get(`/api/check-username?username=${username}`);
 
         console.log(response.data);
-          setUsernameMessage('');
-          setUsernameMessage(response.data.message);
-        
+        setUsernameMessage('');
+        setUsernameMessage(response.data.message);
+
 
         setIsUsernameChecking(false);
       } catch (error) {
@@ -121,7 +121,7 @@ function SignUpForm() {
         });
 
         // Navigate only after successful sign-up
-        setTimeout(() => {router.replace(`/verify/${data.username}`);},2000);
+        setTimeout(() => { router.replace(`/verify/${data.username}`); }, 2000);
 
 
       } else {
@@ -164,10 +164,16 @@ function SignUpForm() {
     <div className=" min-h-[99vh] grid place-items-center ">
 
       <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10 border-2  rounded-md">
-        <div className="text-center mb-8 space-y-1">
+        <div className=" mb-8">
+          <div className="flex gap-2 items-center">
+            <Link href="/" className="flex items-center text-gray-400 hover:text-gray-300 rounded-full">
+              <ArrowLeftCircleIcon className="w-5 h-5" />
+            </Link>
+            <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
+          </div>
 
-          <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
-          <p className="text-sm text-gray-600">Signup to start your anonymous adventure</p>
+
+          <div className="text-sm text-start text-gray-600 mt-1">Signup to start your anonymous adventure</div>
         </div>
 
         <div>
@@ -221,7 +227,7 @@ function SignUpForm() {
                       <Input type="email" placeholder="m@example.com" className="rounded-sm"
                         {...field}
                         onChange={(e) => {
-                          field.onChange(e); 
+                          field.onChange(e);
                           setEmail(e.target.value); // Update identifier state
                         }}
                       />
@@ -241,7 +247,7 @@ function SignUpForm() {
                       <Input type="password" placeholder="password" className="rounded-sm"
                         {...field}
                         onChange={(e) => {
-                          field.onChange(e); 
+                          field.onChange(e);
                           setPassword(e.target.value); // Update identifier state
                         }}
                       />

@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb"; // Ensure you have MongoDB driver installed
+// Ensure you have MongoDB driver installed
 import dbConnect from "@/lib/dbConnect"; // Import your dbConnect function
 import { NextResponse } from 'next/server'; // Use NextResponse for API responses
 import { Schema, Document, model, models } from "mongoose"; // Import necessary Mongoose modules

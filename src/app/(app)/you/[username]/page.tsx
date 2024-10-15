@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Send, Lightbulb } from "lucide-react";
+import { Send, Lightbulb, ArrowLeftCircleIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -82,9 +82,15 @@ export default function MessageInput() {
   return (
     <div className="min-h-[99vh] grid place-items-center bg-gray-50">
       <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10 border-2 rounded-md">
-        <Link href="/" title="Home" className="text-xl lg:text-2xl font-bold text-rose-700 mb-12">
-          AnonFeedback
-        </Link>
+        <div className="flex gap-2 mb-12 items-center">
+          <Link href="/" className="flex items-center text-gray-400 hover:text-gray-300 rounded-full">
+            <ArrowLeftCircleIcon className="w-5 h-5" />
+          </Link>
+          <Link href="/" title="Home" className="text-xl lg:text-2xl font-bold text-rose-700">
+            AnonFeedback
+          </Link>
+        </div>
+
         <h2 className="text-sm text-gray-600 mb-12 mt-1">
           Share Feedback Anonymously
         </h2>

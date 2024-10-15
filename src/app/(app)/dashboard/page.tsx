@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast"
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Loader2, CopyIcon } from "lucide-react";
+import { RefreshCw, Loader2, CopyIcon, ArrowLeft, ArrowDownCircleIcon, ArrowLeftCircleIcon } from "lucide-react";
 import MessageCard from "@/components/MessageCard"
 import axios, { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
@@ -61,7 +61,7 @@ export default function Dashboard() {
     setIsLoading(true);
     try {
       const response = await axios.get<ApiResponse>('/api/get-messages');
-      
+
       setMessages(response.data.messages || []);
       if (refresh) {
         toast({
@@ -92,7 +92,7 @@ export default function Dashboard() {
   }, [session?.user, fetchAcceptMessage]);
 
   const handleSwitchChange = async () => {
-     fetchAcceptMessage();
+    fetchAcceptMessage();
     try {
       const response = await axios.post('/api/accept-messages', {
         acceptMessages: !acceptMessages,
@@ -102,7 +102,7 @@ export default function Dashboard() {
         title: response.data.message,
         variant: 'default',
       });
-     
+
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
@@ -132,7 +132,14 @@ export default function Dashboard() {
   if (!session || !session.user) {
     return (
       <div className="container mx-auto px-6 py-8">
-        <h1 className="text-xl lg:text-2xl font-bold">Please Sign In</h1>
+        <div className="flex gap-2 items-center">
+          <Link href="/" className="flex items-center text-gray-400 hover:text-gray-300 rounded-full">
+            <ArrowLeftCircleIcon className="w-5 h-5" />
+          </Link>
+
+          <h1 className="text-xl lg:text-2xl font-bold">Please Sign In</h1>
+        </div>
+
       </div>
     );
   }
@@ -140,7 +147,14 @@ export default function Dashboard() {
   return (
     <div className="container py-8 px-6 mx-auto">
       <div className="flex justify-between items-center">
-        <Link href={'/'} className="text-xl lg:text-2xl font-bold" title="Home">AnonFeedback Dashboard</Link>
+        <div className="flex gap-2 items-center">
+          <Link href="/" className="flex items-center text-gray-400 hover:text-gray-300 rounded-full">
+            <ArrowLeftCircleIcon className="w-5 h-5" />
+          </Link>
+          <Link href={'/'} className="text-xl lg:text-2xl font-bold" title="Home">AnonFeedback Dashboard</Link>
+        </div>
+
+
         {/*refresh */}
         <Button onClick={() => fetchMessages(true)} size={'sm'} title="Refresh" className="p-0 bg-transparent hover:bg-transparent">
           <RefreshCw className="h-4 w-4 text-black" />

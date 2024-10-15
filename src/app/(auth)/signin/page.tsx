@@ -19,7 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input";
-import { Loader2 } from "lucide-react"
+import { ArrowLeftCircleIcon, Loader2 } from "lucide-react"
 import { signInSchema } from "@/schemas/signInSchema"
 
 function SignInForm() {
@@ -95,10 +95,16 @@ function SignInForm() {
     <div className=" min-h-[99vh] grid place-items-center ">
 
       <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10  border-2  rounded-md">
-        <div className="text-center mb-8 space-y-1">
+      <div className=" mb-8">
+          <div className="flex gap-2 items-center">
+            <Link href="/" className="flex items-center text-gray-400 hover:text-gray-300 rounded-full">
+              <ArrowLeftCircleIcon className="w-5 h-5" />
+            </Link>
+            <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
+          </div>
 
-          <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
-          <p className="text-sm text-gray-600">Signup to start your anonymous adventure</p>
+
+          <div className="text-sm text-start text-gray-600 mt-1">Signup to start your anonymous adventure</div>
         </div>
 
         <div>
