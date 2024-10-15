@@ -9,14 +9,21 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { usePathname} from 'next/navigation';
 
 export default function Navbar() {
   const { data: session } = useSession();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const username = session?.user.userName;
+  
+  const path= usePathname()
+  // Function to determine if a link is active
+  const isActive = (pathname: string) => path === pathname;
+
+
   const NavItems = () => (
     <>
-      <Link href="/" title="Home" className="hover:text-gray-950 text-sm">
+      <Link href="/" title="Home" className={`hover:text-gray-950 text-sm ${isActive('/') ? 'text-gray-600' : ''}`}>
         Home
       </Link>
       <Link href="/dashboard" className="hover:text-gray-950 text-sm">
