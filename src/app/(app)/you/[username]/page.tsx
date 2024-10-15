@@ -25,8 +25,11 @@ export default function MessageInput() {
 
   // Function to handle sending the message
   const handleSendMessage = async () => {
+
     if (message.trim() && message.length > 0 && message.length <= 150) {
       setLoading(true); // Set loading state to true
+      await axios.post("/api/count");
+
       try {
         // Send the message to the API
         const response = await axios.post<ApiResponse>("/api/send-messages", {
@@ -91,7 +94,7 @@ export default function MessageInput() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="w-full h-32 p-3 text-gray-800 bg-gray-200 border focus:outline-none focus:ring-0 "
-            
+
           />
           {/* <p className="text-sm mt-1 mb-10">{message.length}/150 characters</p> */}
           <p className={`text-sm mt-2 ${message.length > 150 ? 'text-red-600' : 'text-gray-600'}`}>
