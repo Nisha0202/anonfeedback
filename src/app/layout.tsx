@@ -14,48 +14,48 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// export const metadata: Metadata = {
-//   title: "AnonFeedback",
-//   description: "AI-Powered Anonymous Feedback Platform",
-// };
-
-
 export const metadata: Metadata = {
   title: "AnonFeedback",
   description: "AI-Powered Anonymous Feedback Platform",
-  metadataBase: new URL("https://anonfeedback0.vercel.app"),
-  openGraph: {
-    title: "AnonFeedback",
-    description: "AI-Powered Anonymous Feedback Platform",
-    url: 'https://anonfeedback0.vercel.app/',
-    siteName: "AI-Powered Anonymous Feedback Platform",
-    type: 'website',
-    images: [
-      {
-        url: 'https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg',
-        secureUrl: 'https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'AI-Powered Anonymous Feedback Platform',
-      }
-    ]
-  },
-
-  twitter: {
-    card: 'summary_large_image',
-    site: 'AnonFeedback',
-    title: 'AnonFeedback',
-    description: 'AI-Powered Anonymous Feedback Platform',
-    creator: '@yesdavidgray',
-    images: {
-      url: `https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg`,
-      alt: `Preview image for AnonFeedback`,
-    },
-  },
-
-
-
 };
+
+
+// export const metadata: Metadata = {
+//   title: "AnonFeedback",
+//   description: "AI-Powered Anonymous Feedback Platform",
+//   metadataBase: new URL("https://anonfeedback0.vercel.app"),
+//   openGraph: {
+//     title: "AnonFeedback",
+//     description: "AI-Powered Anonymous Feedback Platform",
+//     url: 'https://anonfeedback0.vercel.app/',
+//     siteName: "AI-Powered Anonymous Feedback Platform",
+//     type: 'website',
+//     images: [
+//       {
+//         url: 'https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg',
+//         secureUrl: 'https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg',
+//         width: 1200,
+//         height: 630,
+//         alt: 'AI-Powered Anonymous Feedback Platform',
+//       }
+//     ]
+//   },
+
+//   twitter: {
+//     card: 'summary_large_image',
+//     site: 'AnonFeedback',
+//     title: 'AnonFeedback',
+//     description: 'AI-Powered Anonymous Feedback Platform',
+//     creator: '@yesdavidgray',
+//     images: {
+//       url: `https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg`,
+//       alt: `Preview image for AnonFeedback`,
+//     },
+//   },
+
+
+
+// };
 
 
 export default function RootLayout({
