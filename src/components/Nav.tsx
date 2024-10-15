@@ -23,7 +23,7 @@ export default function Navbar() {
 
   const NavItems = () => (
     <>
-      <Link href="/" title="Home" className={`hover:text-gray-950 text-sm ${isActive('/') ? 'text-gray-600' : ''}`}>
+      <Link href="/" title="Home" className={`hover:text-gray-950 text-sm ${isActive('/') ? 'text-gray-400 font-medium' : ''}`}>
         Home
       </Link>
       <Link href="/dashboard" className="hover:text-gray-950 text-sm">
