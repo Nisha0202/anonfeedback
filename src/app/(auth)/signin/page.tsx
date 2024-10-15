@@ -94,7 +94,7 @@ function SignInForm() {
   return (
     <div className=" min-h-[99vh] grid place-items-center ">
 
-      <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10  md:border-2  rounded-md">
+      <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10  border-2  rounded-md">
         <div className="text-center mb-8 space-y-1">
 
           <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
@@ -150,7 +150,7 @@ function SignInForm() {
               <Button
                 type="submit"
                 disabled={isSubmitting || !identifier || !password}
-                className="w-full font-semibold text-gray-50 rounded-sm bg-rose-700  hover:bg-rose-600"
+                className="w-full font-medium text-gray-50 rounded-sm bg-rose-700  hover:bg-rose-600"
               >
                 {isSubmitting ? (
                   <>

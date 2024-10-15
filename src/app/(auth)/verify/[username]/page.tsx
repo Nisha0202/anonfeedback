@@ -22,6 +22,7 @@ import { Loader2 } from 'lucide-react';
 
 function VerifyAccount() {
     const [isVerifying, setIsVerifying] = useState(false);
+    const [code, setCode] = useState('');
     const router = useRouter();
     const param = useParams<{username:string}>();
     const { toast } = useToast();
@@ -115,6 +116,7 @@ function VerifyAccount() {
                       {...field}
                       onChange={(e) => {
                         field.onChange(e)
+                        setCode(e.target.value)
                    
                       }}
 
@@ -129,7 +131,7 @@ function VerifyAccount() {
             
             <Button
               type="submit"
-              disabled={isVerifying}
+              disabled={isVerifying || !code}
               className="flex items-center justify-center w-full font-medium rounded-sm bg-rose-700  hover:bg-rose-600"
             >
               {isVerifying ? (

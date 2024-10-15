@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import { sendVeficationEmail } from "@/lib/resend";
+import { sendVerificationEmail } from "@/lib/resend";
 import UserModel from "@/model/User";
 import bcrypt from 'bcryptjs';
 import NextAuth from "next-auth";
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
         }
 
         // Send verification email
-        const emailResponse = await sendVeficationEmail(email, username, verifyCode);
+        const emailResponse = await sendVerificationEmail (email, username, verifyCode);
         if (!emailResponse.success) {
             return Response.json(
                 {
