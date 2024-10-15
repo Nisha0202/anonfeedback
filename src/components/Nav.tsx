@@ -23,14 +23,14 @@ export default function Navbar() {
 
   const NavItems = () => (
     <>
-      <Link href="/" title="Home" className={`hover:text-gray-950 text-sm ${isActive('/') ? 'text-gray-400 font-medium' : ''}`}>
+      <Link href="/" title="Home" className={`hover:text-gray-950 text-sm ${isActive('/') ? 'border-gray-300 font-medium border-b-2' : ''}`}>
         Home
       </Link>
-      <Link href="/dashboard" className="hover:text-gray-950 text-sm">
+      <Link href="/dashboard" className="hover:text-gray-950 text-sm hover:border-b-2 border-gray-300">
         Dashboard
       </Link>
       {session?.user && 
-        <Link href={`/you/${username}`} className="hover:text-gray-950 text-sm">
+        <Link href={`/you/${username}`} className="hover:text-gray-950 text-sm hover:border-b-2 border-gray-300">
           Message
         </Link>
     
@@ -83,7 +83,6 @@ export default function Navbar() {
 
               ) : (
                 <>
-
                   <Button onClick={() => signIn()} variant={'outline'} className="text-rose-700  hover:text-rose-600 rounded-sm
                   text-sm font-bold ">
                     Sign In
