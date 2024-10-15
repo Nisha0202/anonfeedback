@@ -25,7 +25,7 @@ export default function MessageInput() {
 
   // Function to handle sending the message
   const handleSendMessage = async () => {
-    if (message.trim()) {
+    if (message.trim() && message.length > 0 && message.length <= 150) {
       setLoading(true); // Set loading state to true
       try {
         // Send the message to the API
@@ -85,14 +85,19 @@ export default function MessageInput() {
         <h2 className="text-sm text-gray-600 mb-12 mt-1">
           Share Feedback Anonymously
         </h2>
-        <div className="space-y-8">
+        <div className="">
           <Textarea
             placeholder="Type your anonymous message here..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="w-full h-32 p-3 text-gray-800 bg-gray-200 border focus:outline-none focus:ring-0 "
+            
           />
-          <div className="flex justify-between items-center mt-">
+          {/* <p className="text-sm mt-1 mb-10">{message.length}/150 characters</p> */}
+          <p className={`text-sm mt-2 ${message.length > 150 ? 'text-red-600' : 'text-gray-600'}`}>
+            {message.length}/150 characters
+          </p>
+          <div className="flex justify-between items-center mt-10">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -115,8 +120,8 @@ export default function MessageInput() {
             <Button
               onClick={handleSendMessage}
               variant={"outline"}
-              disabled={!message.trim() || loading} // Disable button if no message or loading
-              className="flex items-center space-x-2 rounded-sm font-bold transition duration-200  text-rose-700"
+              disabled={!message.trim() || loading || message.length > 150} // Disable button if no message or loading
+              className="flex items-center space-x-2 rounded-sm font-bold transition duration-200  text-rose-700 "
             >
               {loading ? (
                 <span>Sending...</span>
