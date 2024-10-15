@@ -61,7 +61,7 @@ export default function Component() {
 
 function FeatureCard({ index, title, description }: { index: string; title: string; description: string }) {
   return (
-    <div className="flex flex-col items-center text-center p-8 bg-gray-200 rounded">
+    <div className="flex flex-col items-center text-center p-8 bg-gray-200 rounded-sm ransform transition-transform hover:scale-105">
       <div className=" text-green-700 font-bold text-lg" > {index}</div>
       <h3 className="mt-2 mb-2 text-lg font-semibold ">{title}</h3>
       <p className="text-gray-600 text-sm">{description}</p>
