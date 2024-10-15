@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         secureUrl: 'https://i.pinimg.com/enabled_lo/564x/5d/ed/f7/5dedf72913c8162747720d41f4d956d1.jpg',
         width: 1200,
         height: 630,
-        alt: '',
+        alt: 'AI-Powered Anonymous Feedback Platform',
       }
     ]
   },
