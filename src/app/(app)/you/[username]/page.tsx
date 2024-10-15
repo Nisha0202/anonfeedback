@@ -14,6 +14,7 @@ import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import { useToast } from "@/hooks/use-toast";
 import { usePathname } from 'next/navigation'
+import { handleAxiosError } from "@/components/response/axiosErrorHandler";
 
 export default function MessageInput() {
   const [message, setMessage] = useState("");
@@ -47,11 +48,7 @@ export default function MessageInput() {
           });
         }
       } catch (error) {
-        const axiosError = error as AxiosError<ApiResponse>;
-        toast({
-          title: username,
-          description: axiosError.response?.data?.message || "Something went wrong.",
-        });
+        handleAxiosError(error as AxiosError<ApiResponse>, toast);
 
 
       } finally {
@@ -74,6 +71,7 @@ export default function MessageInput() {
       }
     } catch (error) {
       console.error("Error fetching suggestion:", error);
+      handleAxiosError(error as AxiosError<ApiResponse>, toast);
     } finally {
       setSuggesting(false);
     }

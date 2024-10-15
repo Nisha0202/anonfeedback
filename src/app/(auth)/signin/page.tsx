@@ -21,6 +21,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { ArrowLeftCircleIcon, Loader2 } from "lucide-react"
 import { signInSchema } from "@/schemas/signInSchema"
+import { handleAxiosError } from "@/components/response/axiosErrorHandler"
+import { AxiosError } from "axios"
+import { ApiResponse } from "@/types/ApiResponse"
 
 function SignInForm() {
   const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form is being submitted
@@ -77,12 +80,8 @@ function SignInForm() {
       }
 
     } catch (error) {
-      console.log(error);
-      toast({
-        title: "Unexpected Error",
-        description: "An unknown error occurred.",
-        variant: 'destructive'
-      });
+      //console.log(error);
+      handleAxiosError(error as AxiosError<ApiResponse>, toast);
 
     } finally {
       setIsSubmitting(false);

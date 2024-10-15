@@ -12,6 +12,7 @@ import { ApiResponse } from "@/types/ApiResponse"
 import { Switch } from "@/components/ui/switch";
 import { acceptMessageSchema } from "@/schemas/acceptMessageSchema"
 import { Message } from "@/model/Message"
+import { handleAxiosError } from '@/components/response/axiosErrorHandler'
 import Link from "next/link";
 import {
   Tooltip,
@@ -47,11 +48,7 @@ export default function Dashboard() {
       const response = await axios.get('/api/accept-messages');
       setValue('acceptMessages', response.data.isAcceptingMessage);
     } catch (error) {
-      const axiosError = error as AxiosError<ApiResponse>;
-      toast({
-        title: "Failed",
-        description: axiosError.response?.data?.message || "Something went wrong.",
-      });
+      handleAxiosError(error as AxiosError<ApiResponse>, toast);
     } finally {
       setSwitchLoading(false);
     }
@@ -70,11 +67,7 @@ export default function Dashboard() {
         });
       }
     } catch (error) {
-      const axiosError = error as AxiosError<ApiResponse>;
-      toast({
-        title: "Failed",
-        description: axiosError.response?.data?.message || "Something went wrong.",
-      });
+      handleAxiosError(error as AxiosError<ApiResponse>, toast);
     } finally {
       setIsLoading(false);
     }
@@ -104,11 +97,7 @@ export default function Dashboard() {
       });
 
     } catch (error) {
-      const axiosError = error as AxiosError<ApiResponse>;
-      toast({
-        title: "Failed",
-        description: axiosError.response?.data?.message || "Something went wrong.",
-      });
+      handleAxiosError(error as AxiosError<ApiResponse>, toast);
     }
   };
 
