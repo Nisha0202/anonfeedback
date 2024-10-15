@@ -78,7 +78,7 @@ export default function Dashboard() {
     } finally {
       setIsLoading(false);
     }
-  }, [session?.user]);
+  }, [session?.user, toast]);
 
   useEffect(() => {
     if (!session || !session.user) return;
@@ -89,7 +89,7 @@ export default function Dashboard() {
     setProfileUrl(url);
     fetchMessages();
     // fetchAcceptMessage();
-  }, [session?.user, fetchAcceptMessage]);
+  }, [session?.user, fetchAcceptMessage, fetchMessages]);
 
   const handleSwitchChange = async () => {
     fetchAcceptMessage();

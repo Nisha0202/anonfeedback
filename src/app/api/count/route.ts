@@ -1,4 +1,3 @@
-// Ensure you have MongoDB driver installed
 import dbConnect from "@/lib/dbConnect"; // Import your dbConnect function
 import { NextResponse } from 'next/server'; // Use NextResponse for API responses
 import { Schema, Document, model, models } from "mongoose"; // Import necessary Mongoose modules
@@ -10,7 +9,7 @@ export interface Counts extends Document {
 }
 
 // Define the Count schema
-export const CountSchema: Schema<Counts> = new Schema({
+const CountSchema: Schema<Counts> = new Schema({
     totalcount: {
         type: Number,
         required: true,
