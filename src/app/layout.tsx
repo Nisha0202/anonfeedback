@@ -23,10 +23,11 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "AnonFeedback",
   description: "AI-Powered Anonymous Feedback Platform",
+  metadataBase: new URL("https://anonfeedback0.vercel.app"), // Add this line
   openGraph: {
     title: "AnonFeedback | AI-Powered Anonymous Feedback Platform",
     type: "website",
-    url: "", // Add the actual URL of your website here
+    url: "https://anonfeedback0.vercel.app",  // Ensure the URL is correct
     images: [
       {
         url: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -37,15 +38,10 @@ export const metadata: Metadata = {
     siteName: "AnonFeedback",
   },
   twitter: {
-    card: "summary_large_image",  // Use a valid Twitter card type
-    site: "@AnonFeedback",  // If you have a Twitter username for the site, use it here (with @)
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        alt: "AI-Powered Anonymous Feedback Platform",
-      }
-    ],
-  }
+    card: "summary_large_image",
+    site: "@anonfeedback",
+    images: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
 };
 
 
