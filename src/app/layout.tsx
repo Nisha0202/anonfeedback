@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        secureUrl: 'https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        url: 'https://i.pinimg.com/enabled_lo/564x/56/92/f5/5692f5c4d274954ad80e0d1dc57733ff.jpg',
+        secureUrl: 'https://i.pinimg.com/enabled_lo/564x/56/92/f5/5692f5c4d274954ad80e0d1dc57733ff.jpg',
         width: 1200,
         height: 630,
         alt: '',
