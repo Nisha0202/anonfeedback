@@ -27,7 +27,6 @@ export default function Dashboard() {
   const [isSwitchLoading, setSwitchLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [profileUrl, setProfileUrl] = useState('');
-
   const { toast } = useToast();
   const { data: session } = useSession();
 
@@ -37,7 +36,6 @@ export default function Dashboard() {
 
   const { watch, setValue } = form;
   const acceptMessages = watch('acceptMessages');
-
   const handleDelete = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
@@ -77,29 +75,11 @@ export default function Dashboard() {
     if (!session || !session.user) return;
 
     const username = session?.user.userName;
-
     const url = `${window.location.origin}/you/${username}`;
     setProfileUrl(url);
     fetchMessages();
     // fetchAcceptMessage();
   }, [session?.user, fetchAcceptMessage, fetchMessages]);
-
-  // const handleSwitchChange = async () => {
-  //   fetchAcceptMessage();
-  //   try {
-  //     const response = await axios.post('/api/accept-messages', {
-  //       acceptMessages: !acceptMessages,
-  //     });
-  //     setValue('acceptMessages', !acceptMessages);
-  //     toast({
-  //       title: response.data.message,
-  //       variant: 'default',
-  //     });
-
-  //   } catch (error) {
-  //     handleAxiosError(error as AxiosError<ApiResponse>, toast);
-  //   }
-  // };
 
   const handleSwitchChange = async () => {
     setSwitchLoading(true);
@@ -120,8 +100,6 @@ export default function Dashboard() {
   const indexOfFirstMessage = indexOfLastMessage - messagesPerPage;
   const currentMessages = messages.slice(indexOfFirstMessage, indexOfLastMessage);
   const totalPages = Math.ceil(messages.length / messagesPerPage);
-
-
 
   const copyUrl = () => {
     navigator.clipboard.writeText(profileUrl);
@@ -156,7 +134,6 @@ export default function Dashboard() {
           </Link>
           <Link href={'/'} className="text-xl lg:text-2xl font-bold" title="Home">AnonFeedback Dashboard</Link>
         </div>
-
 
         {/*refresh */}
         <Button onClick={() => fetchMessages(true)} size={'sm'} title="Refresh" className="p-0 bg-transparent hover:bg-transparent">
