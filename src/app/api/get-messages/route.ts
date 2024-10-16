@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 import mongoose from "mongoose";
 
-
 export async function GET() {
   await dbConnect();
   const session = await getServerSession(authOptions);
@@ -25,7 +24,7 @@ export async function GET() {
     const user = await UserModel.aggregate([
       { $match: { _id: userId } }, // Matching with `_id`, not `id`
       { $unwind: "$messages" }, // Unwind the `messages` array
-      { $sort: { "messages.createdAt": -1 } }, // Sort messages by `createdAt`
+      { $sort: { "messages.createAt": -1 } }, // Sort messages by `createdAt`
       { 
         $group: { 
           _id: "$_id", 

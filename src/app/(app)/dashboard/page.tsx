@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast"
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Loader2, CopyIcon, ArrowLeft, ArrowDownCircleIcon, ArrowLeftCircleIcon } from "lucide-react";
+import { RefreshCw, Loader2, CopyIcon, ArrowLeftCircleIcon, ArrowRightSquare, ArrowLeftSquare } from "lucide-react";
 import MessageCard from "@/components/MessageCard"
 import axios, { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
@@ -84,22 +84,36 @@ export default function Dashboard() {
     // fetchAcceptMessage();
   }, [session?.user, fetchAcceptMessage, fetchMessages]);
 
-  const handleSwitchChange = async () => {
-    fetchAcceptMessage();
-    try {
-      const response = await axios.post('/api/accept-messages', {
-        acceptMessages: !acceptMessages,
-      });
-      setValue('acceptMessages', !acceptMessages);
-      toast({
-        title: response.data.message,
-        variant: 'default',
-      });
+  // const handleSwitchChange = async () => {
+  //   fetchAcceptMessage();
+  //   try {
+  //     const response = await axios.post('/api/accept-messages', {
+  //       acceptMessages: !acceptMessages,
+  //     });
+  //     setValue('acceptMessages', !acceptMessages);
+  //     toast({
+  //       title: response.data.message,
+  //       variant: 'default',
+  //     });
 
+  //   } catch (error) {
+  //     handleAxiosError(error as AxiosError<ApiResponse>, toast);
+  //   }
+  // };
+
+  const handleSwitchChange = async () => {
+    setSwitchLoading(true);
+    try {
+      await axios.post('/api/accept-messages', { acceptMessages: !acceptMessages });
+      setValue('acceptMessages', !acceptMessages); // Optimistic UI update
+      toast({ title: "Settings updated successfully.", variant: 'default' });
     } catch (error) {
       handleAxiosError(error as AxiosError<ApiResponse>, toast);
+    } finally {
+      setSwitchLoading(false);
     }
   };
+
 
   const messagesPerPage = 6;
   const indexOfLastMessage = currentPage * messagesPerPage;
@@ -202,18 +216,21 @@ export default function Dashboard() {
               <div className="mt-8">No messages found.</div>
             )}
           </div>
+          <div className="mt-auto pt-12 ">
+            {totalPages > 1 && (
+              <div className="mt-auto flex justify-center space-x-2 text-sm ">
+                <Button className="text-gray-400 hover:text-gray-500" variant={"outline"} onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
+                  <ArrowLeftSquare />
+                </Button>
+                <span className="flex items-center text-gray-600">Page {currentPage} of {totalPages}</span>
+                <Button className="text-gray-400 hover:text-gray-500" variant={"outline"} onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
+                  <ArrowRightSquare />
+                </Button>
+              </div>
+            )}
 
-          {totalPages > 1 && (
-            <div className="mt-8 flex justify-center space-x-2">
-              <Button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
-                Previous
-              </Button>
-              <span className="flex items-center">Page {currentPage} of {totalPages}</span>
-              <Button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
-                Next
-              </Button>
-            </div>
-          )}
+          </div>
+
         </>
       )}
     </div>
