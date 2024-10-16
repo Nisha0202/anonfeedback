@@ -166,9 +166,9 @@ function SignUpForm() {
       <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10 border-2  rounded-md">
         <div className=" mb-8">
           <div className="flex gap-2 items-center">
-            <Link href="/" className="flex items-center text-gray-400 hover:text-gray-300 rounded-full">
+          <Button  onClick={() => history.back()} title="Back" className="p-0 bg-transparent hover:bg-transparent text-gray-400 hover:text-gray-300 rounded-full">
               <ArrowLeftCircleIcon className="w-5 h-5" />
-            </Link>
+            </Button>
             <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
           </div>
 

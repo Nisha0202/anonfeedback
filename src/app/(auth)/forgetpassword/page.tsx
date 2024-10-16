@@ -1,4 +1,3 @@
-
 'use client'
 import React, { useState } from "react"
 import { signIn } from "next-auth/react"
@@ -26,9 +25,9 @@ import { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
 
 function SignInForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false); // To track if the form is being submitted
-  const [identifier, setIdentifier] = useState(""); // State for identifier input
-  const [password, setPassword] = useState(""); // State for password input
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
 
   const { toast } = useToast();
   const router = useRouter();
@@ -92,17 +91,18 @@ function SignInForm() {
 
   return (
     <div className=" min-h-[99vh] grid place-items-center ">
+
       <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10  border-2  rounded-md">
         <div className=" mb-8">
           <div className="flex gap-2 items-center">
-            <Button onClick={() => history.back()} title="Back" className="p-0 bg-transparent hover:bg-transparent text-gray-400 hover:text-gray-300 rounded-full">
+            <Button  onClick={() => history.back()} title="Back" className="p-0 bg-transparent hover:bg-transparent text-gray-400 hover:text-gray-300 rounded-full">
               <ArrowLeftCircleIcon className="w-5 h-5" />
             </Button>
             <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
           </div>
 
 
-          <div className="text-sm text-start text-gray-600 mt-1">Signin to start your anonymous adventure</div>
+          <div className="text-sm text-start text-gray-600 mt-1">Enter your email and we will help you reset it!</div>
         </div>
 
         <div>
@@ -120,7 +120,7 @@ function SignInForm() {
                         {...field}
                         onChange={(e) => {
                           field.onChange(e);
-                          setIdentifier(e.target.value);
+                          setIdentifier(e.target.value); // Update identifier state
                         }}
                       />
 
@@ -135,13 +135,13 @@ function SignInForm() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Set New Password</FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="password" className="rounded-sm"
                         {...field}
                         onChange={(e) => {
                           field.onChange(e);
-                          setPassword(e.target.value);
+                          setPassword(e.target.value); // Update identifier state
                         }}
                       />
                     </FormControl>
@@ -149,12 +149,6 @@ function SignInForm() {
                   </FormItem>
                 )}
               />
-              <div className="flex items-center">Forget your Password?
-                <Link href={'/forgetpassword'} className="text-rose-700 font-medium hover:text-rose-600 hover:font-semibold px-1">
-                  Click here
-                </Link>
-              </div>
-
               <br />
 
               <Button
@@ -168,7 +162,7 @@ function SignInForm() {
                     Please wait...
                   </>
                 ) : (
-                  'Sign In'
+                  'Submit'
                 )}
               </Button>
 
@@ -180,7 +174,7 @@ function SignInForm() {
           </Form>
 
           <div className="mt-4 w-full text-center text-sm text-gray-600" >
-            <h1>New here? <Link href='/signup' className="text-rose-700 font-medium hover:text-rose-600 hover:font-semibold">Sign Up</Link></h1>
+            <h1>Never registered? <Link href='/signup' className="text-rose-700 font-medium hover:text-rose-600 hover:font-semibold">Sign Up</Link></h1>
           </div>
 
 
