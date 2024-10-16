@@ -13,15 +13,13 @@ export async function GET(request: Request){
     await dbConnect();
 
     try {
-
+      
         const {searchParams} = new URL(request.url)
-        const queryParam = { username: searchParams.get('username')
-
-        }
+        const queryParam = { username: searchParams.get('username') };
+//   console.log("usernme=", queryParam);
 
         // validate with zod
         const result = usernameQuerySchema.safeParse(queryParam);
-        // console.log(result) //remove
 
         if(!result.success){
             const usernameErrors = result.error.format().username?._errors || []
@@ -35,9 +33,13 @@ export async function GET(request: Request){
             )
         }
         
-        const {username} = result.data
+        const { username } = result.data;
+        const existingVerifiedUser = await UserModel.findOne({
+            userName: { $regex: new RegExp(`^${username.trim()}$`, 'i') },
+            isVerified: true
+        });
+        // console.log("Existing user:", existingVerifiedUser);
 
-        const existingVerifiedUser = await UserModel.findOne({username, isVerified: true})
 
         if(existingVerifiedUser){
             return Response.json(
@@ -48,6 +50,7 @@ export async function GET(request: Request){
                 { status: 400 }      
             )
         }
+
 
         return Response.json(
             {

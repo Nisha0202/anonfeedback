@@ -33,7 +33,7 @@ function SignUpForm() {
 
 
 
-  const debounced = useDebounceCallback(setUsername, 2000)// The value will only update after the user has stopped typing for 500 milliseconds
+  const debounced = useDebounceCallback(setUsername, 700)// The value will only update after the user has stopped typing for 500 milliseconds
   const { toast } = useToast();
   const router = useRouter();
 
@@ -50,16 +50,18 @@ function SignUpForm() {
 
   useEffect(() => {
     const checkUsernameUnique = async () => {
-      // console.log("hii", username);
-
+     
+      console.log("hi", username);
       // Prevent API call if username is empty
 
       if (username.trim().length == 0) {
+        setUsernameMessage('');
         return;
       }
 
       if (username.trim().length < 3) {
         setIsUsernameChecking(true);
+         setUsernameMessage('');
         setUsernameMessage('Username must be at least 3 characters long and unique.');
         setIsUsernameChecking(false);
         return;
@@ -71,21 +73,20 @@ function SignUpForm() {
         setIsUsernameChecking(true);
         const response = await axios.get(`/api/check-username?username=${username}`);
 
-        // console.log(response.data);
-        setUsernameMessage('');
-        setUsernameMessage(response.data.message);
-
-
+         // Handle the API response based on success flag
+         if (response.data.success) {
+          setUsernameMessage('Username is available.');
+        } else {
+          setUsernameMessage('Username is already taken.');
+        }
         setIsUsernameChecking(false);
+
       } catch (error) {
+        setIsUsernameChecking(false);
         const axioserror = error as AxiosError<ApiResponse>;
 
         if (axioserror.response) {
-          // Server responded with a status code other than 2xx
-          toast({
-            title: "Failed",
-            description: axioserror.response.data.message,
-          });
+          setUsernameMessage('Username is already taken.');
         } else if (axioserror.request) {
           // Request was made but no response received
           toast({
@@ -192,7 +193,7 @@ function SignUpForm() {
                         onChange={(e) => {
                           field.onChange(e)
                           debounced(e.target.value)
-                          setUsername(e.target.value)
+                          
                         }}
 
 
