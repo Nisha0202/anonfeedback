@@ -2,12 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import { sendVerificationEmail } from "@/lib/resend";
 import UserModel from "@/model/User";
 import bcrypt from 'bcryptjs';
-import NextAuth from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/options";
 
-// NextAuth handler for GET requests
-const handler = NextAuth(authOptions);
-export { handler as GET };
 
 // POST handler for user registration
 export async function POST(request: Request) {

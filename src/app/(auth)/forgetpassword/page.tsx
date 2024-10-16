@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from "react"
-import { signIn } from "next-auth/react"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -8,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from "zod"
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ToastAction } from "@/components/ui/toast"
 import {
   Form,
   FormControl,
@@ -20,8 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ArrowLeftCircleIcon, Loader2 } from "lucide-react"
 import { signInSchema } from "@/schemas/signInSchema"
-import { handleAxiosError } from "@/components/response/axiosErrorHandler"
-import { AxiosError } from "axios"
+import axios, { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
 
 function SignInForm() {
@@ -41,47 +38,69 @@ function SignInForm() {
     }
   });
 
-
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
     setIsSubmitting(true);
 
+
+
     try {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email: data.identifier,
-        password: data.password
-      });
 
-      if (result?.error) {
-        let errorMessage = "Sign In Failed";
-        if (result.error.includes("credentials")) {
-          errorMessage = "Invalid credentials. Please check your email or password.";
-        } else if (result.error.includes("email")) {
-          errorMessage = "Email not found. Please sign up first.";
+      const result = await axios.get('/api/forget-password', {
+        params: {
+          identifier: data.identifier,
+          password: data.password,
         }
+      });
+      if (result.data.success) {
+        const username = result.data.message;
+        const response = await axios.post<ApiResponse>('/api/forget-password', data);
 
+        // Check if the response status is 2xx
+        if (response.status == 201) {
+          toast({
+            title: "Success",
+            description: response.data.message,
+          });
+
+          // Navigate only after successful sign-up
+          setTimeout(() => { router.replace(`/verify/${username}`); }, 2000);
+
+        } else {
+          toast({
+            title: "Failed",
+            description: response.data.message || "Unexpected error occurred during sign-up.",
+          });
+        }
+      } else {
         toast({
-          title: errorMessage,
-          description: 'Invalid credentials.',
-          variant: 'destructive'
+          title: "Failed",
+          description: result.data.message || "Unexpected error occurred during sign-up.",
         });
 
-      } else if (result?.url) {
-        toast({
-          title: "Success",
-          description: "Sign in successful.",
-          action: (
-            <ToastAction altText="Welcome user">Welcome!</ToastAction>
-          ),
-        });
 
-        setTimeout(() => { router.replace('/') }, 1400);
+    } }catch (error) {
+      const axioserror = error as AxiosError<ApiResponse>;
+      console.log(axioserror);
+
+      if (axioserror.response) {
+        // Server responded with a status code other than 2xx
+        toast({
+          title: "Failed",
+          description: axioserror.response.data.message,
+        });
+      } else if (axioserror.request) {
+        // Request was made but no response received
+        toast({
+          title: "Network Error",
+          description: "No response received. Please check your network connection.",
+        });
+      } else {
+        // Something else happened in setting up the request
+        toast({
+          title: "Error",
+          description: axioserror.message || 'An unknown error occurred',
+        });
       }
-
-    } catch (error) {
-      //console.log(error);
-      handleAxiosError(error as AxiosError<ApiResponse>, toast);
-
     } finally {
       setIsSubmitting(false);
     }
@@ -95,14 +114,14 @@ function SignInForm() {
       <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10  border-2  rounded-md">
         <div className=" mb-8">
           <div className="flex gap-2 items-center">
-            <Button  onClick={() => history.back()} title="Back" className="p-0 bg-transparent hover:bg-transparent text-gray-400 hover:text-gray-300 rounded-full">
+            <Button onClick={() => history.back()} title="Back" className="p-0 bg-transparent hover:bg-transparent text-gray-400 hover:text-gray-300 rounded-full">
               <ArrowLeftCircleIcon className="w-5 h-5" />
             </Button>
             <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
           </div>
 
 
-          <div className="text-sm text-start text-gray-600 mt-1">Enter your email and we will help you reset it!</div>
+          <div className="text-sm text-start text-gray-600 mt-1">Enter your email and we will help you reset password!</div>
         </div>
 
         <div>

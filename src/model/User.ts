@@ -12,6 +12,8 @@ export interface User extends Document {
   isAcceptingMessage: boolean;
   messages: Message[];
   createdAt: Date;
+  isForgetPassword: boolean;
+  newPassword: string
 }
 
 // Define the UserSchema using Mongoose
@@ -65,10 +67,19 @@ const UserSchema: Schema<User> = new Schema({
     required: true,
     default: Date.now,
   },
+
+  isForgetPassword:{
+    type: Boolean,
+    default: false
+  },
+  newPassword: {
+    type: String,
+    required: false,
+  }
+
 });
 
-// Export the User model
-// const UserModel = model<User>('User', UserSchema);
+
 // Use the existing model if it is already compiled, otherwise define it
 const UserModel = models.User || model<User>('User', UserSchema);
 

@@ -71,7 +71,7 @@ function SignUpForm() {
         setIsUsernameChecking(true);
         const response = await axios.get(`/api/check-username?username=${username}`);
 
-        console.log(response.data);
+        // console.log(response.data);
         setUsernameMessage('');
         setUsernameMessage(response.data.message);
 
