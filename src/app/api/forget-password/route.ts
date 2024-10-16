@@ -15,7 +15,7 @@ export async function GET(request: Request) {
         const identifier = searchParams.get('identifier');
 
         // Check if the user already exists
-        let user = await UserModel.findOne({
+        const user = await UserModel.findOne({
             $or: [
                 { userEmail: identifier },
                 { userName: identifier }
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     try {
         const { identifier, password } = await request.json();
         // Check if the user already exists
-        let user = await UserModel.findOne({
+        const user = await UserModel.findOne({
             $or: [
                 { userEmail: identifier },
                 { userName: identifier }
