@@ -7,15 +7,15 @@ import { NextRequest, NextResponse } from "next/server";
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function POST(req: NextRequest) {
-    const body = await req.json();  // Parsing the request body
-    const { content } = body;
+  const body = await req.json();  // Parsing the request body
+  const { content } = body;
 
-    if (!content) {
-        return NextResponse.json(
-          { success: false, message: "No message provided." },
-          { status: 400 }
-        );
-      }
+  if (!content) {
+    return NextResponse.json(
+      { success: false, message: "No message provided." },
+      { status: 400 }
+    );
+  }
 
   try {
     const chatCompletion = await groq.chat.completions.create({
@@ -33,28 +33,34 @@ export async function POST(req: NextRequest) {
       "stop": null
     });
 
-    const responseMessage = chatCompletion.choices[0]?.message?.content || "";
+    // const responseMessage = chatCompletion.choices[0]?.message?.content || "";
+    let responseMessage = chatCompletion.choices[0]?.message?.content || "";
+
+    // Ensure the response ends with a period if not already present
+    if (responseMessage && !responseMessage.trim().endsWith(".")) {
+      responseMessage = responseMessage.trim() + ".";
+    }
 
     // console.log("hi", responseMessage);
     return Response.json(
-        {
-            success: true,
-            message: responseMessage,
-        },
-        { status: 200 }
+      {
+        success: true,
+        message: responseMessage,
+      },
+      { status: 200 }
     )
 
-    
+
   } catch (error: any) {
     console.error("Error fetching Groq completion:", error); // Log the error
     return Response.json(
-        {
-            success: false,
-            message: "Error fetching Groq completion.",
-        },
-        { status: 500 }
+      {
+        success: false,
+        message: "Error fetching Groq completion.",
+      },
+      { status: 500 }
     )
-  
+
   }
 
 }

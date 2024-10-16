@@ -201,7 +201,7 @@ export default function MessageInput() {
             </Button>
           </div>
 
-        </div> <div className="pt-4 text-sm text-rose-700 text-wrap font-medium">{feedback}.</div>
+        </div> <div className="pt-4 text-sm text-rose-700 text-wrap font-medium">{feedback} </div>
       </div>
     </div>
   );
