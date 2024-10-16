@@ -20,42 +20,103 @@ export default function MessageInput() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false); // Sent message loading state
   const [suggesting, setSuggesting] = useState(false); // Suggesting messages state
+  const [feedback, setFeedback] = useState("");
   const pathname = usePathname();
   const username = pathname.split("/").pop();
   const { toast } = useToast();
 
-  // Function to handle sending the message
-  const handleSendMessage = async () => {
+  // // Function to handle sending the message
+  // const handleSendMessage = async () => {
 
+  //   if (message.trim() && message.length > 0 && message.length <= 150) {
+  //     setLoading(true); // Set loading state to true
+  //     await axios.post("/api/count");
+
+  //     try {
+  //       // Send the message to the API
+  //       const response = await axios.post<ApiResponse>("/api/send-messages", {
+  //         username,
+  //         content: message,
+  //       });
+
+  //       if (response.status == 200) {
+  //         // Clear the input after sending the message successfully
+  //         // console.log("Message sent:", response.data.message);
+  //         setMessage("");
+  //         toast({
+  //           title: "Success",
+  //           description: response?.data?.message,
+  //         });
+
+  //         const res = await axios.post<ApiResponse>("/api/feedback-message", {
+  //           content: message,
+  //         });
+
+  //         if (res.status == 200) {
+  //           // Clear the input after sending the message successfully
+  //           // console.log("Message sent:", response.data.message);
+  //           setFeedback(response.data.message);
+  //         }
+
+
+
+  //       }
+  //     } catch (error) {
+  //       handleAxiosError(error as AxiosError<ApiResponse>, toast);
+
+
+  //     } finally {
+  //       setLoading(false); // Set loading state back to false
+  //     }
+  //   }
+  // };
+
+
+  const handleSendMessage = async () => {
     if (message.trim() && message.length > 0 && message.length <= 150) {
       setLoading(true); // Set loading state to true
-      await axios.post("/api/count");
-
+  
       try {
-        // Send the message to the API
+        // Step 1: Send the initial message
+        await axios.post("/api/count");
+  
         const response = await axios.post<ApiResponse>("/api/send-messages", {
           username,
           content: message,
         });
-
-        if (response.status == 200) {
+  
+        if (response.status === 200) {
           // Clear the input after sending the message successfully
-          console.log("Message sent:", response.data.message);
           setMessage("");
           toast({
             title: "Success",
-            description: response?.data?.message,
+            description: response.data.message,
           });
+  
+          // Step 2: Send feedback message
+          const res = await axios.post<ApiResponse>("/api/feedback-message", {
+            content: message,
+          });
+  
+          if (res.status === 200) {
+            // Set the feedback message after successfully sending the feedback
+            setFeedback(res.data.message); // Ensure this uses `res.data`
+          } else {
+            toast({
+              title: "Error",
+              description: "Failed to send feedback message.",
+              variant: "destructive",
+            });
+          }
         }
       } catch (error) {
         handleAxiosError(error as AxiosError<ApiResponse>, toast);
-
-
       } finally {
         setLoading(false); // Set loading state back to false
       }
     }
   };
+  
 
 
   // Function to handle getting the suggested message
@@ -100,7 +161,6 @@ export default function MessageInput() {
             className="w-full h-32 p-3 text-gray-800 bg-gray-200 border focus:outline-none focus:ring-0 "
 
           />
-          {/* <p className="text-sm mt-1 mb-10">{message.length}/150 characters</p> */}
           <p className={`text-sm mt-2 ${message.length > 150 ? 'text-red-600' : 'text-gray-600'}`}>
             {message.length}/150 characters
           </p>
@@ -140,7 +200,8 @@ export default function MessageInput() {
               )}
             </Button>
           </div>
-        </div>
+
+        </div> <div className="pt-4 text-sm text-rose-700 text-wrap font-medium">{feedback}.</div>
       </div>
     </div>
   );
