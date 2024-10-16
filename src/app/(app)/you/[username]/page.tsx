@@ -75,16 +75,16 @@ export default function MessageInput() {
   const handleSendMessage = async () => {
     if (message.trim() && message.length > 0 && message.length <= 150) {
       setLoading(true); // Set loading state to true
-  
+
       try {
         // Step 1: Send the initial message
         await axios.post("/api/count");
-  
+
         const response = await axios.post<ApiResponse>("/api/send-messages", {
           username,
           content: message,
         });
-  
+
         if (response.status === 200) {
           // Clear the input after sending the message successfully
           setMessage("");
@@ -92,12 +92,12 @@ export default function MessageInput() {
             title: "Success",
             description: response.data.message,
           });
-  
+
           // Step 2: Send feedback message
           const res = await axios.post<ApiResponse>("/api/feedback-message", {
             content: message,
           });
-  
+
           if (res.status === 200) {
             // Set the feedback message after successfully sending the feedback
             setFeedback(res.data.message); // Ensure this uses `res.data`
@@ -116,7 +116,7 @@ export default function MessageInput() {
       }
     }
   };
-  
+
 
 
   // Function to handle getting the suggested message
@@ -150,7 +150,7 @@ export default function MessageInput() {
           </Link>
         </div>
 
-        <h2 className="text-sm text-gray-600 mb-12 mt-1">
+        <h2 className="text-sm text-gray-600 mb-10 mt-1">
           Share Feedback Anonymously
         </h2>
         <div className="">
@@ -164,7 +164,7 @@ export default function MessageInput() {
           <p className={`text-sm mt-2 ${message.length > 150 ? 'text-red-600' : 'text-gray-600'}`}>
             {message.length}/150 characters
           </p>
-          <div className="flex justify-between items-center mt-10">
+          <div className="flex justify-between items-center mt-8">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
