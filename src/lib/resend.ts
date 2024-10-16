@@ -18,7 +18,7 @@
 
 
 
-  
+
 //     return {success:true, message: "Verification email sent successfully."}
 // } catch (error) {
 //     console.error("Error Sending Verification Email", error);
@@ -52,7 +52,7 @@ export async function sendVerificationEmail(useremail: string, username: string,
             Thank you for starting the journey with AnonFeedback!<br/>
             Your OTP for verification is: <strong>${verifycode}</strong>
           </p>
-          <a href="https://anonfeedback0.vercel.app/verify/${username}" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin:20px">
+          <a href="https://anonfeedback0.vercel.app/verify/${username}" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
             Verify Now
           </a>
         </div>

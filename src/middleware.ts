@@ -1,6 +1,6 @@
 import { getToken } from "next-auth/jwt";
 import { NextResponse, NextRequest } from "next/server";
-export {default} from 'next-auth/middleware'
+export { default } from 'next-auth/middleware'
 
 
 export async function middleware(request: NextRequest) {
@@ -9,18 +9,18 @@ export async function middleware(request: NextRequest) {
 
   // If the user has a token and is trying to access sign-in or sign-up, redirect to dashboard
   if (token && (
-      url.pathname.startsWith('/signup') ||
-      url.pathname.startsWith('/signin') ||
-      url.pathname.startsWith('/verify')
+    url.pathname.startsWith('/signup') ||
+    url.pathname.startsWith('/signin') ||
+    url.pathname.startsWith('/verify')
   )) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // Allow access to sign-in, sign-up, and verification routes if no token exists
   if (!token && (
-      url.pathname.startsWith('/signin') ||
-      url.pathname.startsWith('/signup') ||
-      url.pathname.startsWith('/verify')
+    url.pathname.startsWith('/signin') ||
+    url.pathname.startsWith('/signup') ||
+    url.pathname.startsWith('/verify')
   )) {
     return NextResponse.next(); // Let the user access these pages
   }

@@ -151,7 +151,7 @@ function SignInForm() {
               />
               <div className="flex items-center">Forget your Password?
                 <Link href={'/forgetpassword'} className="text-rose-700 font-medium hover:text-rose-600 hover:font-semibold px-1">
-                  Click here
+                  Reset
                 </Link>
               </div>
 

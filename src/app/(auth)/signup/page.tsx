@@ -50,7 +50,7 @@ function SignUpForm() {
 
   useEffect(() => {
     const checkUsernameUnique = async () => {
-     
+
       console.log("hi", username);
       // Prevent API call if username is empty
 
@@ -61,7 +61,7 @@ function SignUpForm() {
 
       if (username.trim().length < 3) {
         setIsUsernameChecking(true);
-         setUsernameMessage('');
+        setUsernameMessage('');
         setUsernameMessage('Username must be at least 3 characters long and unique.');
         setIsUsernameChecking(false);
         return;
@@ -73,8 +73,8 @@ function SignUpForm() {
         setIsUsernameChecking(true);
         const response = await axios.get(`/api/check-username?username=${username}`);
 
-         // Handle the API response based on success flag
-         if (response.data.success) {
+        // Handle the API response based on success flag
+        if (response.data.success) {
           setUsernameMessage('Username is available.');
         } else {
           setUsernameMessage('Username is already taken.');
@@ -167,7 +167,7 @@ function SignUpForm() {
       <div className="w-full max-w-md px-6 py-8 sm:px-6 lg:px-8 md:px-10 border-2  rounded-md">
         <div className=" mb-8">
           <div className="flex gap-2 items-center">
-          <Button  onClick={() => history.back()} title="Back" className="p-0 bg-transparent hover:bg-transparent text-gray-400 hover:text-gray-300 rounded-full">
+            <Button onClick={() => history.back()} title="Back" className="p-0 bg-transparent hover:bg-transparent text-gray-400 hover:text-gray-300 rounded-full">
               <ArrowLeftCircleIcon className="w-5 h-5" />
             </Button>
             <Link href={'/'} className="text-xl lg:text-2xl font-bold">AnonFeedback</Link>
@@ -193,7 +193,7 @@ function SignUpForm() {
                         onChange={(e) => {
                           field.onChange(e)
                           debounced(e.target.value)
-                          
+
                         }}
 
 
