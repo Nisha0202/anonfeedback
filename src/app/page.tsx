@@ -15,40 +15,38 @@ export default function Component() {
           </h1>
 
           <p className="hidden md:block text-sm lg:text-base text-gray-600 pt-4 max-w-2xl mx-auto text-center">
-  Empower yourself with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
-</p>
-<p className="block md:hidden text-sm lg:text-base text-gray-600 pt-4 mx-auto text-center">
-  Empower yourself with honest, unfiltered feedback.
-</p>
+            Empower yourself with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
+          </p>
+          <p className="block md:hidden text-sm lg:text-base text-gray-600 pt-4 mx-auto text-center">
+            Empower yourself with honest, unfiltered feedback.
+          </p>
 
 
         </section>
 
-        <section className="pb-12">
+        <section className="pb-12 pt-4">
           <div className="container mx-auto px-6">
-            <h2 className=" text-lg lg:text-2xl font-semibold text-center mb-4 lg:mb-6">
+            <h2 className=" text-lg lg:text-2xl font-medium text-center mb-4 lg:mb-6">
               How It Works
             </h2>
-            <div className="grid gap-6  lg:grid-cols-3">
+            <div className="grid gap-6 lg:gap-10 lg:grid-cols-3">
               <FeatureCard
                 index="1"
-
                 title="Create Your Profile"
-                description="Sign up and set up your anonymous profile! Choose a unique username that will appear in the link you share with others."
+                description="Sign up anonymously and choose a unique username for sharing."
               />
               <FeatureCard
                 index="2"
-
                 title="Connect & Share"
-                description="Send your URL to people you want to ask questions or get feedback from. Our platform guarantees complete anonymity for all feedback providers!"
+                description="Share your public URL to receive anonymous feedback from others."
               />
               <FeatureCard
                 index="3"
-
                 title="Grow & Improve"
-                description="Receive genuine feedback, take a moment to reflect, and use those insights for your personal and professional growth."
+                description="Gain insights from feedback to enhance personal and professional growth."
               />
             </div>
+
           </div>
         </section>
       </main>
@@ -65,11 +63,19 @@ export default function Component() {
 
 function FeatureCard({ index, title, description }: { index: string; title: string; description: string }) {
   return (
-    <div className="group flex flex-col items-center text-center p-6 bg-gray-200 rounded-sm transform transition-transform duration-300 hover:scale-105">
-    <div className="text-green-700 font-bold">{index}</div>
-    <h3 className="mt-4 mb-1 text-lg font-semibold">{title}</h3>
-    <p className="text-gray-600 text-sm">{description}</p>
-  </div>
-  
+
+    <div className="flex flex-col gap-3 items-center text-center bg-gray-200 p-10 rounded-sm transition-transform duration-300 hover:scale-105">
+      <div className="relative">
+        <div className="">
+          <h3 className="lg:text-lg text-base font-medium ">{title}</h3>
+        </div>
+        <div className="absolute top-0 right-0 -mr-3 -mt-1 w-4 h-4 rounded-full font-semibold text-sm text-rose-700 bg-gray-100 flex items-center justify-center">
+          {index}
+        </div>
+      </div>
+
+      <p className="text-gray-600 text-sm">{description}</p>
+    </div>
+
   )
 }
