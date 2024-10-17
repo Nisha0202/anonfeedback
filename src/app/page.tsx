@@ -6,23 +6,26 @@ export default function Component() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Nav />
       <main className="flex-grow">
-        <section className="container mx-auto px-6 py-16 lg:py-20 text-center">
-          <h1 className="text-2xl lg:text-5xl md:text-3xl font-bold pt-6
+        <section className="container mx-auto px-6 py-12 lg:py-20 text-center">
+          <h1 className="text-xl  lg:text-5xl md:text-3xl font-bold pt-6
                        bg-gradient-to-r from-rose-900 via-rose-400 to-rose-600 bg-clip-text text-transparent
                        animate-[wave-gradient_4s_ease_infinite] bg-[length:200%_200%]"
           >
             Get Feedback Anonymously
           </h1>
 
-          <p className="text-sm lg:text-base text-gray-600 pt-4 max-w-2xl mx-auto">
+          <p className="hidden lg:flex text-sm lg:text-base text-gray-600 pt-4 max-w-2xl mx-auto ">
             Empower yourself with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
+          </p>
+          <p className="flex lg:hidden text-sm lg:text-base text-gray-600 pt-4 max-w-2xl mx-auto">
+            Empower yourself with honest, unfiltered feedback.
           </p>
 
         </section>
 
         <section className="pb-12">
           <div className="container mx-auto px-6">
-            <h2 className=" text-xl lg:text-2xl font-bold text-center mb-8 lg:mb-6">
+            <h2 className=" text-lg lg:text-2xl font-semibold text-center mb-4 lg:mb-6">
               How It Works
             </h2>
             <div className="grid gap-6  lg:grid-cols-3">
@@ -61,10 +64,11 @@ export default function Component() {
 
 function FeatureCard({ index, title, description }: { index: string; title: string; description: string }) {
   return (
-    <div className="flex flex-col items-center text-center p-8 bg-gray-200 rounded-sm ransform transition-transform hover:scale-105">
-      <div className=" text-green-700 font-bold text-lg" > {index}</div>
-      <h3 className="mt-2 mb-2 text-lg font-semibold ">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
-    </div>
+    <div className="group flex flex-col items-center text-center p-6 bg-gray-200 rounded-sm transform transition-transform duration-300 hover:scale-105">
+    <div className="text-green-700 font-bold">{index}</div>
+    <h3 className="mt-4 mb-1 text-lg font-semibold">{title}</h3>
+    <p className="text-gray-600 text-sm">{description}</p>
+  </div>
+  
   )
 }

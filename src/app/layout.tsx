@@ -14,10 +14,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// export const metadata: Metadata = {
-//   title: "AnonFeedback",
-//   description: "AI-Powered Anonymous Feedback Platform",
-// };
+
 
 
 export const metadata: Metadata = {

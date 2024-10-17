@@ -2,7 +2,7 @@
 const nextConfig = {
     images: {
     domains: ['i.pinimg.com'],  // the domain of the external image
-  }
+  },
 
 
 };
