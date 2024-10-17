@@ -14,10 +14,10 @@ export default function Component() {
             Get Feedback Anonymously
           </h1>
 
-          <p className="hidden lg:flex text-sm lg:text-base text-gray-600 pt-4 max-w-2xl mx-auto ">
+          <p className="hidden md:block text-sm lg:text-base text-gray-600 pt-4 max-w-2xl mx-auto text-center">
             Empower yourself with honest, unfiltered feedback. Our platform ensures complete anonymity, fostering open communication and continuous improvement.
           </p>
-          <p className="flex lg:hidden text-sm lg:text-base text-gray-600 pt-4 max-w-2xl mx-auto">
+          <p className="block md:hidden text-sm lg:text-base text-gray-600 pt-4 mx-auto text-center">
             Empower yourself with honest, unfiltered feedback.
           </p>
 

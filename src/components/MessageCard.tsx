@@ -18,7 +18,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Trash} from 'lucide-react'
+import {MessageSquare, Trash} from 'lucide-react'
 import { Button } from './ui/button'
 import { Message } from '@/model/Message'
 import { useToast } from '@/hooks/use-toast'
@@ -59,7 +59,7 @@ export default function MessageCard({ message, onMessageDelete }: MessageCardPro
         <Card className=''>
             <CardHeader>
 
-                <CardDescription>Message</CardDescription>
+                <CardDescription><MessageSquare className='w-4 h-4 inline-block mr-1'/>Feedback</CardDescription>
             </CardHeader>
             <CardContent className='h-20'>
                 <p>{message.content}</p>

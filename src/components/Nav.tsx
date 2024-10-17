@@ -26,7 +26,7 @@ export default function Navbar() {
       <Link href="/" title="Home" className={`hover:text-gray-950 text-sm ${isActive('/') ? 'border-gray-300 font-medium border-b-2' : ''}`}>
         Home
       </Link>
-      <Link href="/dashboard" className="hover:text-gray-950 text-sm hover:border-b-2 border-gray-300">
+      <Link href="/dashboard" className="hover:text-gray-950 text-sm hover:border-b-2 border-gray-300 ">
         Dashboard
       </Link>
       {session?.user && 
@@ -119,7 +119,7 @@ export default function Navbar() {
 
 
                   <div className="mt-4">
-                    <nav className="grid gap-y-4">
+                    <nav className="grid gap-y-4 max-w-24">
                       <NavItems />
                     </nav>
                   </div>
