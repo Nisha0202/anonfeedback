@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     let responseMessage = chatCompletion.choices[0]?.message?.content || "";
 
     // Ensure the response ends with a period if not already present
-    if (responseMessage && !responseMessage.trim().endsWith(".")) {
+    if (responseMessage && !/[.!?]$/.test(responseMessage.trim())) {
       responseMessage = responseMessage.trim() + ".";
     }
 

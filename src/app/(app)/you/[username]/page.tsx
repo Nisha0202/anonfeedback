@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Send, Lightbulb, ArrowLeftCircleIcon } from "lucide-react";
+import { Send, Lightbulb, ArrowLeftCircleIcon, MessageSquareHeart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -201,7 +201,16 @@ export default function MessageInput() {
             </Button>
           </div>
 
-        </div> <div className="pt-4 text-sm text-rose-700 text-wrap font-medium">{feedback} </div>
+        </div>
+
+        {feedback &&
+        <div className="pt-4">
+               <div className="text-sm text-rose-700 text-wrap font-medium border-s-2 border-rose-400 ps-2">{feedback} </div>
+    
+        </div>
+        }
+        
+ 
       </div>
     </div>
   );
