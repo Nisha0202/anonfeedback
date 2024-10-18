@@ -64,17 +64,17 @@ export default function Component() {
 function FeatureCard({ index, title, description }: { index: string; title: string; description: string }) {
   return (
 
-    <div className="flex flex-col lg:gap-3 gap-2 items-center text-center bg-gray-200 m-2 p-10 rounded-sm transition-transform duration-300 hover:scale-105">
+    <div className="flex flex-col lg:gap-3 gap-2 max-w-sm mx-auto items-center text-center border-2 m-2 p-10 rounded-sm transition-transform duration-300 hover:scale-105">
       <div className="relative">
         <div className="">
           <h3 className="lg:text-lg text-base font-medium ">{title}</h3>
         </div>
-        <div className="absolute top-0 right-0 -mr-3 -mt-1 w-4 h-4 rounded-full font-semibold text-sm text-rose-700 bg-gray-100 flex items-center justify-center">
+        <div className="absolute top-0 right-0 -mr-4 border-2  -mt-2 w-5 h-5 rounded-full font-semibold text-sm text-rose-600  flex items-center justify-center">
           {index}
         </div>
       </div>
 
-      <p className="text-gray-600 text-sm">{description}</p>
+      <p className="text-gray-600 text-sm px-3">{description}</p>
     </div>
 
   )

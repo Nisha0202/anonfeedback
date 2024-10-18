@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "AnonFeedback",
     description: "AI-Powered Anonymous Feedback Platform",
     url: 'https://anonfeedback0.vercel.app/',
-    siteName: "AnonFeedback- Share or Get Feedback Anonymously",
+    siteName: "Share or Get Feedback Anonymously",
     type: 'website',
     images: [
       {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    site: 'AnonFeedback- Share or Get Feedback Anonymously',
+    site: 'Share or Get Feedback Anonymously',
     title: 'AnonFeedback',
     description: 'AI-Powered Anonymous Feedback Platform',
     creator: '@jabatunnisha',
