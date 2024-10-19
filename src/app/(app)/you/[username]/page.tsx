@@ -25,52 +25,6 @@ export default function MessageInput() {
   const username = pathname.split("/").pop();
   const { toast } = useToast();
 
-  // // Function to handle sending the message
-  // const handleSendMessage = async () => {
-
-  //   if (message.trim() && message.length > 0 && message.length <= 150) {
-  //     setLoading(true); // Set loading state to true
-  //     await axios.post("/api/count");
-
-  //     try {
-  //       // Send the message to the API
-  //       const response = await axios.post<ApiResponse>("/api/send-messages", {
-  //         username,
-  //         content: message,
-  //       });
-
-  //       if (response.status == 200) {
-  //         // Clear the input after sending the message successfully
-  //         // console.log("Message sent:", response.data.message);
-  //         setMessage("");
-  //         toast({
-  //           title: "Success",
-  //           description: response?.data?.message,
-  //         });
-
-  //         const res = await axios.post<ApiResponse>("/api/feedback-message", {
-  //           content: message,
-  //         });
-
-  //         if (res.status == 200) {
-  //           // Clear the input after sending the message successfully
-  //           // console.log("Message sent:", response.data.message);
-  //           setFeedback(response.data.message);
-  //         }
-
-
-
-  //       }
-  //     } catch (error) {
-  //       handleAxiosError(error as AxiosError<ApiResponse>, toast);
-
-
-  //     } finally {
-  //       setLoading(false); // Set loading state back to false
-  //     }
-  //   }
-  // };
-
 
   const handleSendMessage = async () => {
     if (message.trim() && message.length > 0 && message.length <= 150) {
@@ -180,7 +134,7 @@ export default function MessageInput() {
 
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Click to get a suggested message</p>
+                  <p>Click to get a suggested feedback</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
