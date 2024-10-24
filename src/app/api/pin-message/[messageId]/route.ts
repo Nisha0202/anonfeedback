@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 
 export async function PATCH(req: Request, { params }: { params: { messageId: string } }) {
   await dbConnect();
-  console.log("hello")
+ 
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {

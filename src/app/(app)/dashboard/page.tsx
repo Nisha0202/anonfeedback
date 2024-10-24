@@ -44,6 +44,17 @@ export default function Dashboard() {
 
   // // Pin message
   const handlePinToggle = async (messageId: string, pin: boolean) => {
+
+    // console.log("pin", pin);
+
+    if (!pin) {
+      const sortedMessages = [...messages].sort((a, b) => {
+          // If unpinned sort by createdAt
+          return new Date(b.createAt).getTime() - new Date(a.createAt).getTime();
+     
+      });
+      setMessages(sortedMessages);
+    }
    
     // Optimistically update the local state
     setMessages((prevMessages) => {
