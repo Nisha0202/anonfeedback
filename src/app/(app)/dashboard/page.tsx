@@ -36,9 +36,23 @@ export default function Dashboard() {
 
   const { watch, setValue } = form;
   const acceptMessages = watch('acceptMessages');
+
   const handleDelete = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
+
+ const handlePinToggle = async (messageId: string, pin: boolean) => {
+  try {
+    const response = await axios.patch(`/api/pin-message/${messageId}`, { isPinned: pin });
+    setMessages(messages.filter((message) =>
+      message._id === messageId ? { ...message, isPinned: pin } : { ...message, isPinned: false }
+    ));
+    toast({ title: response.data.message });
+  } catch (error) {
+    handleAxiosError(error as AxiosError<ApiResponse>, toast);
+  }
+};
+
 
   const fetchAcceptMessage = useCallback(async () => {
     setSwitchLoading(true);
@@ -125,6 +139,8 @@ export default function Dashboard() {
     );
   }
 
+
+
   return (
     <div className="container py-8 px-6 mx-auto">
       <div className="flex justify-between items-center">
@@ -187,6 +203,7 @@ export default function Dashboard() {
                   key={message._id}
                   message={message}
                   onMessageDelete={handleDelete}
+                  onPinToggle={handlePinToggle}
                 />
               ))
             ) : (

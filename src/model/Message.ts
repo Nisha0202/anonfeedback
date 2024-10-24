@@ -5,6 +5,7 @@ export interface Message extends Document{
     _id: string;
     content: string;
     createAt: Date;
+    isPinned?: Boolean;
 }
 
 export const MessageSchema : Schema<Message> = new Schema({
@@ -16,6 +17,11 @@ export const MessageSchema : Schema<Message> = new Schema({
         type : Date,
         required : true,
         default: Date.now,
+        
+    },
+    isPinned:{
+        type : Boolean,
+        default: false,
         
     }
 })
