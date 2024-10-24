@@ -36,30 +36,34 @@ export default function Dashboard() {
 
   const { watch, setValue } = form;
   const acceptMessages = watch('acceptMessages');
-  
+
 // Optimistically update the local state
   const handleDelete = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
 
-  // Pin message
+  // // Pin message
   const handlePinToggle = async (messageId: string, pin: boolean) => {
-
+   
     // Optimistically update the local state
-    setMessages((prevMessages) =>
-      prevMessages.map((message) =>
+    setMessages((prevMessages) => {
+      // Update the message's pinned status
+      const updatedMessages = prevMessages.map((message) =>
         message._id === messageId
-          ? ({ ...message, isPinned: pin } as Message)
+          ? ({ ...message, isPinned: pin } as Message) // Update the isPinned status
           : message
-      )
-    );
-
-
-
+      );
+  
+      // Sort messages to have pinned messages first
+      return updatedMessages.sort((a, b) => {
+        if (a.isPinned === b.isPinned) return 0; // If both are pinned or unpinned, keep order
+        return a.isPinned ? -1 : 1; // Pinned messages first
+      });
+    });
+  
     try {
       const response = await axios.patch(`/api/pin-message/${messageId}`, { isPinned: pin });
       toast({ title: response.data.message });
-      // fetchMessages();
     } catch (error) {
       handleAxiosError(error as AxiosError<ApiResponse>, toast);
     }

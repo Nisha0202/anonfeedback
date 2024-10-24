@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 export async function GET() {
   await dbConnect();
   const session = await getServerSession(authOptions);
-  
+
   if (!session || !session.user) {
     return new Response(
       JSON.stringify({
@@ -24,10 +24,15 @@ export async function GET() {
     const user = await UserModel.aggregate([
       { $match: { _id: userId } }, // Matching with `_id`, not `id`
       { $unwind: "$messages" }, // Unwind the `messages` array
-      { $sort: { "messages.createAt": -1 } }, // Sort messages by `createdAt`
-      { 
-        $group: { 
-          _id: "$_id", 
+      {
+        $sort: {
+          "messages.isPinned": -1, // Sort by isPinned (true first)
+          "messages.createAt": -1 // Then sort by createAt (newest first)
+        }
+      },
+      {
+        $group: {
+          _id: "$_id",
           messages: { $push: "$messages" } // Group messages back into an array
         }
       }
