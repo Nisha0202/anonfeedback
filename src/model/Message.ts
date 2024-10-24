@@ -5,7 +5,7 @@ export interface Message extends Document{
     _id: string;
     content: string;
     createAt: Date;
-    isPinned?: Boolean;
+    isPinned?: boolean;
 }
 
 export const MessageSchema : Schema<Message> = new Schema({

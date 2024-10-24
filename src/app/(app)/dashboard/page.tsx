@@ -36,22 +36,38 @@ export default function Dashboard() {
 
   const { watch, setValue } = form;
   const acceptMessages = watch('acceptMessages');
-
+  
+// Optimistically update the local state
   const handleDelete = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
 
- const handlePinToggle = async (messageId: string, pin: boolean) => {
-  try {
-    const response = await axios.patch(`/api/pin-message/${messageId}`, { isPinned: pin });
-    setMessages(messages.filter((message) =>
-      message._id === messageId ? { ...message, isPinned: pin } : { ...message, isPinned: false }
-    ));
-    toast({ title: response.data.message });
-  } catch (error) {
-    handleAxiosError(error as AxiosError<ApiResponse>, toast);
-  }
-};
+  // Pin message
+  const handlePinToggle = async (messageId: string, pin: boolean) => {
+
+    // Optimistically update the local state
+    setMessages((prevMessages) =>
+      prevMessages.map((message) =>
+        message._id === messageId
+          ? ({ ...message, isPinned: pin } as Message)
+          : message
+      )
+    );
+
+
+
+    try {
+      const response = await axios.patch(`/api/pin-message/${messageId}`, { isPinned: pin });
+      toast({ title: response.data.message });
+      // fetchMessages();
+    } catch (error) {
+      handleAxiosError(error as AxiosError<ApiResponse>, toast);
+    }
+  };
+
+
+
+
 
 
   const fetchAcceptMessage = useCallback(async () => {
