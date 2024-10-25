@@ -83,6 +83,7 @@ export async function POST(request: Request) {
                 user.isForgetPassword = true;
                 user.isVerified = false;
                 user.newPassword = hashedPassword;
+                user.verifyExpireDate = expiry;
                 await user.save();
                 return createResponse(true, "Verification code sent. Please verify your email.", 201);
 
