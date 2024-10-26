@@ -171,9 +171,9 @@ export default function Dashboard() {
   return (
     <div className="container py-8 px-6 mx-auto">
       <div className="flex justify-between items-center">
-        <div className="flex gap-2 md:items-center items-start">
+        <div className="flex gap-2 items-center">
           <Link href="/" className="flex items-center text-gray-400 hover:text-gray-300 rounded-full">
-            <ArrowLeftCircleIcon className="w-5 h-5" />
+            <ArrowLeftCircleIcon className="size-5" />
           </Link>
           <Link href={'/'} className="text-xl lg:text-2xl font-bold" title="Home">AnonFeedback Dashboard</Link>
         </div>
