@@ -78,6 +78,19 @@ export default function Dashboard() {
     }
   };
 
+   const fetchAcceptMessage = useCallback(async () => {
+    setSwitchLoading(true);
+    try {
+      const response = await axios.get('/api/accept-messages');
+      setValue('acceptMessages', response.data.isAcceptingMessage);
+    } catch (error) {
+      handleAxiosError(error as AxiosError<ApiResponse>, toast);
+    } finally {
+      setSwitchLoading(false);
+    }
+  }, [setValue]);
+
+
   const fetchMessages = useCallback(async (refresh: boolean = false) => {
     setIsLoading(true);
     try {
@@ -104,6 +117,7 @@ export default function Dashboard() {
     const url = `${window.location.origin}/you/${username}`;
     setProfileUrl(url);
     fetchMessages();
+    fetchAcceptMessage();
   }, [session?.user, fetchMessages]);
 
   
