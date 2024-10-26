@@ -59,7 +59,7 @@ function SignInForm() {
         if (response.status == 201) {
           toast({
             title: "Success",
-            description: response.data.message,
+            description: 'Please verify your account to reset your password.',
           });
 
           // Navigate only after successful sign-up
