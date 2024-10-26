@@ -46,7 +46,7 @@ export default function MessageInput() {
             title: "Success",
             description: response.data.message,
           });
-
+          setLoading(false); 
           // Step 2: Send feedback message
           const res = await axios.post<ApiResponse>("/api/feedback-message", {
             content: message,

@@ -45,8 +45,6 @@ export default function Dashboard() {
   // // Pin message
   const handlePinToggle = async (messageId: string, pin: boolean) => {
 
-    // console.log("pin", pin);
-
     if (!pin) {
       const sortedMessages = [...messages].sort((a, b) => {
           // If unpinned sort by createdAt
@@ -80,23 +78,6 @@ export default function Dashboard() {
     }
   };
 
-
-
-
-
-
-  const fetchAcceptMessage = useCallback(async () => {
-    setSwitchLoading(true);
-    try {
-      const response = await axios.get('/api/accept-messages');
-      setValue('acceptMessages', response.data.isAcceptingMessage);
-    } catch (error) {
-      handleAxiosError(error as AxiosError<ApiResponse>, toast);
-    } finally {
-      setSwitchLoading(false);
-    }
-  }, [setValue]);
-
   const fetchMessages = useCallback(async (refresh: boolean = false) => {
     setIsLoading(true);
     try {
@@ -123,9 +104,9 @@ export default function Dashboard() {
     const url = `${window.location.origin}/you/${username}`;
     setProfileUrl(url);
     fetchMessages();
-    // fetchAcceptMessage();
-  }, [session?.user, fetchAcceptMessage, fetchMessages]);
+  }, [session?.user, fetchMessages]);
 
+  
   const handleSwitchChange = async () => {
     setSwitchLoading(true);
     try {
@@ -154,6 +135,7 @@ export default function Dashboard() {
     });
   }
 
+  const MemoizedMessageCard = React.memo(MessageCard);
 
   if (!session || !session.user) {
     return (
@@ -230,7 +212,7 @@ export default function Dashboard() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12">
             {messages.length > 0 ? (
               currentMessages.map((message) => (
-                <MessageCard
+                <MemoizedMessageCard
                   key={message._id}
                   message={message}
                   onMessageDelete={handleDelete}

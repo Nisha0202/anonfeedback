@@ -55,7 +55,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/" title="Home" className="flex-shrink-0 flex items-center">
 
-              <span className="ml-2 text-lg font-bold ">AnonFeedback</span>
+              <span className="ml-2 text-lg font-bold pt-0.5">AnonFeedback</span>
             </Link>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-4">
               <NavItems />
