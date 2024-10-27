@@ -170,6 +170,7 @@ export default function Dashboard() {
 
   return (
     <div className="container py-8 px-6 mx-auto">
+      {/* header */}
       <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <Link href="/" className="flex items-center text-gray-400 hover:text-gray-300 rounded-full">
@@ -183,6 +184,7 @@ export default function Dashboard() {
           <RefreshCw className="h-4 w-4 text-black" />
         </Button>
       </div>
+
 
       <div className="mt-2 flex flex-col lg:flex-row  items-start lg:items-center justify-start lg:justify-between">
         <div className="mt-2 flex items-center gap-x-3">
@@ -218,6 +220,9 @@ export default function Dashboard() {
         </div>
 
       </div>
+
+
+      
 
       {isLoading ? (
         <Loader2 className="animate-spin mt-12" />
