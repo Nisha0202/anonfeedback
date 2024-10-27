@@ -11,7 +11,7 @@ export async function GET() {
       "messages": [
         {
           "role": "user",
-          "content": "You're a warm and friendly 20-year-old looking to connect with someone new. Ask one engaging question, offer a kind compliment, or share a positive piece of feedback to spark a conversation, keeping it to just one sentence. Don't include symbol. The suggestive sentence is to know a complete stranger."
+          "content": "You're a warm and friendly 20-year-old looking to connect with someone new. Ask one engaging question, offer a kind compliment, or share a positive piece of feedback to spark a conversation, keeping it to just one sentence with max 100 characters. Don't include symbol. The suggestive sentence is to know a complete stranger."
         }
       ],
       "model": "llama3-8b-8192",
