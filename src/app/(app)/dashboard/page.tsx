@@ -186,9 +186,9 @@ export default function Dashboard() {
       </div>
 
 
-      <div className="mt-2 flex flex-col lg:flex-row  items-start lg:items-center justify-start lg:justify-between">
+      <div className="mt-2 flex flex-col lg:flex-row gap-2  items-start lg:items-center justify-start lg:justify-between">
       {/* accept messages */}
-        <div className="my-2 flex items-center gap-x-3">
+        <div className="flex items-center gap-x-3 +">
 
           <span className="text-sm">Accepting Messages</span>
           <Switch
@@ -229,10 +229,10 @@ export default function Dashboard() {
         <Loader2 className="animate-spin mt-12" />
       ) : (
         <>
-          <div className="flex flex-wrap md:justify-start justify-center items-center lg:gap-4 gap-4  mt-12">
+          <div className="flex flex-wrap md:justify-start justify-center items-center lg:gap-6 gap-4  mt-12">
             {messages.length > 0 ? (
               currentMessages.map((message) => (
-                <MessageCard
+                <MemoizedMessageCard
                   key={message._id}
                   message={message}
                   onMessageDelete={handleDelete}

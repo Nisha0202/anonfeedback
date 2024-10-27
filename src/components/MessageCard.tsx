@@ -66,7 +66,7 @@ export default function MessageCard({ message, onMessageDelete, onPinToggle }: M
                 <CardDescription><MessageSquare className='w-4 h-4 inline-block mr-1' />Feedback</CardDescription>
             </CardHeader>
             <CardContent className='h-20'>
-                <p className='text-[14px]'>{message.content}</p>
+                <p className='text-[16px]'>{message.content}</p>
             </CardContent>
             <CardFooter className='text-sm pt-4 flex flex-col gap-1 md:flex-row items-start md:items-center'>
                 <div className='max-w-[294px] text-gray-600 mb-2'>{new Date(message.createAt).toLocaleString('en-US', {
