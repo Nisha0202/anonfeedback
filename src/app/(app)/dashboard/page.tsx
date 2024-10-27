@@ -169,7 +169,7 @@ export default function Dashboard() {
 
 
   return (
-    <div className="container py-8 px-6 mx-auto">
+    <div className="container py-8 px-3 mx-auto">
       {/* header */}
       <div className="flex justify-between items-center">
         <div className="flex gap-2 items-center">
@@ -187,7 +187,8 @@ export default function Dashboard() {
 
 
       <div className="mt-2 flex flex-col lg:flex-row  items-start lg:items-center justify-start lg:justify-between">
-        <div className="mt-2 flex items-center gap-x-3">
+      {/* accept messages */}
+        <div className="my-2 flex items-center gap-x-3">
 
           <span className="text-sm">Accepting Messages</span>
           <Switch
@@ -199,15 +200,15 @@ export default function Dashboard() {
         </div>
 
 
-        <div>
+        <div className="">
           {acceptMessages && <div className="text-sm flex items-center">
             {profileUrl}
 
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button onClick={copyUrl} variant="outline" size="sm" className="ms-3 flex items-center">
-                    <CopyIcon className="h-4 w-4" />
+                  <Button onClick={copyUrl} variant="outline" size='sm' className="ms-3 flex items-center">
+                    <CopyIcon className="size-3" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -228,10 +229,10 @@ export default function Dashboard() {
         <Loader2 className="animate-spin mt-12" />
       ) : (
         <>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12">
+          <div className="flex flex-wrap md:justify-start justify-center items-center lg:gap-4 gap-4  mt-12">
             {messages.length > 0 ? (
               currentMessages.map((message) => (
-                <MemoizedMessageCard
+                <MessageCard
                   key={message._id}
                   message={message}
                   onMessageDelete={handleDelete}

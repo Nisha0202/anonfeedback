@@ -61,19 +61,23 @@ export default function MessageCard({ message, onMessageDelete, onPinToggle }: M
 
 
     return (
-        <Card>
+        <Card className='w-80'>
             <CardHeader>
                 <CardDescription><MessageSquare className='w-4 h-4 inline-block mr-1' />Feedback</CardDescription>
             </CardHeader>
             <CardContent className='h-20'>
-                <p>{message.content}</p>
+                <p className='text-[14px]'>{message.content}</p>
             </CardContent>
-            <CardFooter className='text-sm mt-4'>
-                <p className='flex-1 text-gray-600'>{new Date(message.createAt).toLocaleString('en-US', {
+            <CardFooter className='text-sm pt-4 flex flex-col gap-1 md:flex-row items-start md:items-center'>
+                <div className='max-w-[294px] text-gray-600 mb-2'>{new Date(message.createAt).toLocaleString('en-US', {
                     month: 'long', day: 'numeric', year: 'numeric',
                     hour: 'numeric', minute: 'numeric', hour12: true
-                })}</p>
-                <Button onClick={handlePinToggle} variant={'outline'} className='mr-2'>
+                })}</div>
+
+                {/* action */}
+
+                <div className='w-full flex items-center justify-end gap-4'>
+                       <Button onClick={handlePinToggle} variant={'outline'} className=''>
                     {message.isPinned ? (
                         <PinOff className='w-4 h-4 text-gray-700' />
                     ) : (
@@ -99,6 +103,11 @@ export default function MessageCard({ message, onMessageDelete, onPinToggle }: M
                         </AlertDialogFooter>
                     </AlertDialogContent>
                 </AlertDialog>
+                </div>
+             
+
+
+
             </CardFooter>
         </Card>
 

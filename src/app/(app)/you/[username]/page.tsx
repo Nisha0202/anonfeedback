@@ -27,7 +27,7 @@ export default function MessageInput() {
 
 
   const handleSendMessage = async () => {
-    if (message.trim() && message.length > 0 && message.length <= 150) {
+    if (message.trim() && message.length > 0 && message.length <= 100) {
       setLoading(true); // Set loading state to true
 
       try {
@@ -115,8 +115,8 @@ export default function MessageInput() {
             className="w-full h-32 p-3 text-gray-800 bg-gray-200 border focus:outline-none focus:ring-0 "
 
           />
-          <p className={`text-sm mt-2 ${message.length > 150 ? 'text-red-600' : 'text-gray-600'}`}>
-            {message.length}/150 characters
+          <p className={`text-sm mt-2 ${message.length > 100 ? 'text-red-600' : 'text-gray-600'}`}>
+            {message.length}/100 characters
           </p>
           <div className="flex justify-between items-center mt-8">
             <TooltipProvider>
