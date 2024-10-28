@@ -6,7 +6,7 @@ export default function Component() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Nav />
       <main className="flex-grow">
-        <section className="container mx-auto px-6 py-24 lg:py-20 text-center mt-6 ">
+        <section className="container mx-auto px-2 py-24 lg:py-20 text-center mt-6 ">
           <h1 className="text-[22px] lg:text-5xl md:text-3xl font-bold h-8 md:h-10 lg:h-14
                        bg-gradient-to-r text-transparent from-rose-900 via-rose-400 to-rose-600 bg-clip-text 
                        animate-[wave-gradient_4s_ease_infinite] bg-[length:200%_200%]"
@@ -64,7 +64,7 @@ export default function Component() {
 function FeatureCard({ index, title, description }: { index: string; title: string; description: string }) {
   return (
 
-    <div className="flex flex-col w-80 lg:gap-3 gap-2  items-center text-center border-2 px-4 py-8 rounded-sm transition-transform duration-300 hover:scale-105">
+    <div className="flex flex-col w-80 lg:gap-3 gap-2  items-center text-center border-2 px-4 pt-8 pb-12 rounded-sm transition-transform duration-300 hover:scale-105">
       <div className="relative">
         <div className="">
           <h3 className="lg:text-lg text-base font-medium ">{title}</h3>
