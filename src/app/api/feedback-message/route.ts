@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       "messages": [
         {
           "role": "user",
-          "content": `Your friend just sent you this message: ${content}. Craft a thoughtful, concise response (up to 120 characters) expressing gratitude, concern, or an appropriate reaction. Reply in one sentence without any " symbol`
+          "content": `A Stranger just sent you this message: ${content}. Craft a thoughtful, concise response (up to 120 characters) expressing gratitude, concern, or an appropriate reaction. Reply in one sentence without any " symbol`
         }
       ],
       "model": "llama3-8b-8192",
