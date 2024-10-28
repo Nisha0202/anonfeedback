@@ -25,7 +25,7 @@ export default function Component() {
         </section>
 
         <section className="pb-12 pt-4">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto">
             <h2 className=" text-lg lg:text-2xl font-medium text-center mb-4 lg:mb-6 ">
               How It Works
             </h2>
