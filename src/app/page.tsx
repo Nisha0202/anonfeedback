@@ -28,8 +28,8 @@ export default function Component() {
 
 
         <section className="pt-8 ">
-          <div className="container mx-auto px-4">
-            <h2 className="text-lg md:text-2xl font-semibold text-center mb-8 text-gray-600">
+          <div className="max-w-6xl mx-auto px-4 lg:px-0">
+            <h2 className="text-lg md:text-2xl font-semibold text-center mb-8 ">
               How It Works
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
