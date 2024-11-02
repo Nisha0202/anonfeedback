@@ -75,7 +75,7 @@ function FeatureCard({ icon, title, description, index }: { icon: React.ReactNod
         <div className="flex items-center  justify-center mb-4 mt-1 text-gray-800">
           {icon}
         </div>
-        <CardTitle className="text-xl font-medium text-gray-800 ">{title}</CardTitle>
+        <CardTitle className="text-lg pb-1 md:text-xl font-medium text-gray-800 ">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-sm lg:text-base text-gray-600  pb-2 pt-0">{description}</p>
