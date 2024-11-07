@@ -62,4 +62,4 @@ GROQ_API_KEY=your_api_key
 -  Debouncing Technique:  Ensures unique usernames are checked without unnecessary API calls.
 -  Performance Improvements:  Limits state updates for enhanced efficiency.
 -  Dynamic Imports:  Optimizes loading of components and libraries as needed.
--  SEO Optimization:  Utilizes descriptive links to improve search engine visibility.
+-  SEO Optimization and meta tags:  Utilizes descriptive links to improve search engine visibility and used meta tags for engaging social media sharing.
