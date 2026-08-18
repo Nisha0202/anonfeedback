@@ -47,36 +47,28 @@ function SignInForm() {
     setIsSubmitting(true);
 
     try {
-      const result = await signIn('credentials', {
+      const result = await signIn("credentials", {
         redirect: false,
         email: data.identifier,
-        password: data.password
+        password: data.password,
       });
 
       if (result?.error) {
-        let errorMessage = "Sign In Failed";
-        if (result.error.includes("credentials")) {
-          errorMessage = "Invalid credentials. Please check your email or password.";
-        } else if (result.error.includes("email")) {
-          errorMessage = "Email not found. Please sign up first.";
-        }
-
         toast({
-          title: errorMessage,
-          description: 'Invalid credentials.',
-          variant: 'destructive'
+          title: "Sign In Failed",
+          description: "Invalid credentials.",
+          variant: "destructive",
         });
+        return;
+      }
 
-      } else if (result?.url) {
+      if (result?.ok) {
         toast({
           title: "Success",
           description: "Sign in successful.",
-          action: (
-          <ToastAction altText="Welcome user">Welcome!</ToastAction>
-          ),
         });
 
-        setTimeout(() => { router.replace('/') }, 1400);
+        router.replace("/dashboard");
       }
 
     } catch (error) {
